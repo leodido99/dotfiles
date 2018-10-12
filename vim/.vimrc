@@ -33,19 +33,10 @@ set path=~/gitrepo/fwv6-main/**
 syntax enable
 colorscheme solarized8
 set background=dark
-"set termguicolors
-
-"let g:gruvbox_italic=1
-"colorscheme gruvbox
-"colorscheme dracula
 
 " Highlight column 110
 set colorcolumn=110
 highlight ColorColumn ctermbg=darkgray
-"augroup project
-"    autocmd!
-"    autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
-"augroup END
 " Highlight trailing spaces
 " http://vim.wikia.com/wiki/Highlight_unwanted_spaces
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -54,12 +45,6 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
-
-" Tagbar
-" Doesn't work well with mksession
-"autocmd VimEnter * nested :call tagbar#autoopen(1)
-"autocmd FileType * nested :call tagbar#autoopen(0)
-"autocmd BufEnter * nested :call tagbar#autoopen(0)
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
@@ -96,6 +81,14 @@ set sessionoptions=buffers
 
 " Key mappings
 let mapleader = " "
+
+if &term =~ '^screen'
+" tmux will send xterm-style keys when its xterm-keys option is on
+execute "set <xUp>=\e[1;*A"
+execute "set <xDown>=\e[1;*B"
+execute "set <xRight>=\e[1;*C"
+execute "set <xLeft>=\e[1;*D"
+endif
 
 map <C-o> :NERDTreeToggle<CR>
 
