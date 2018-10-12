@@ -1,0 +1,114 @@
+"set statusline+=%F " Set file name in status line
+set number		" Add line number
+set autowrite		" Write buffer on :next, :last etc...
+set autoread		" Read file on outside change
+set exrc
+set secure
+set tabstop=8
+set softtabstop=8
+set shiftwidth=8
+set undodir=$HOME/.vim/undodir
+set undofile
+set undolevels=1000
+set undoreload=10000
+set splitright
+set splitbelow
+set laststatus=2
+
+" Enable pathogen
+execute pathogen#infect()
+
+" Handle true colors
+if exists('+termguicolors')
+	let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+	let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+	set termguicolors
+endif
+
+" Path for :find
+" Zephyr main repo
+set path=~/gitrepo/fwv6-main/**
+
+" Color scheme
+syntax enable
+colorscheme solarized8
+set background=dark
+"set termguicolors
+
+"let g:gruvbox_italic=1
+"colorscheme gruvbox
+"colorscheme dracula
+
+" Highlight column 110
+set colorcolumn=110
+highlight ColorColumn ctermbg=darkgray
+"augroup project
+"    autocmd!
+"    autocmd BufRead,BufNewFile *.h,*.c set filetype=c.doxygen
+"augroup END
+" Highlight trailing spaces
+" http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+" Tagbar
+" Doesn't work well with mksession
+"autocmd VimEnter * nested :call tagbar#autoopen(1)
+"autocmd FileType * nested :call tagbar#autoopen(0)
+"autocmd BufEnter * nested :call tagbar#autoopen(0)
+
+" vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+"let g:airline_powerline_fonts = 1
+
+" ultisnips
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsSnippetDirectories=["/home/lbise/backup_stuff/vim/UltiSnips"]
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" ConqueGDB
+let g:ConqueGdb_GdbExe = 'arm-zephyr-eabi-gdb'
+let g:ConqueGdb_SrcSplit = "left"
+let g:ConqueTerm_CloseOnEnd = 1    " close conque when program ends running
+let g:ConqueTerm_ReadUnfocused = 1
+
+" gutentags
+" Exclude build directories
+let g:gutentags_ctags_exclude=[ "build" ]
+:set statusline+=%{gutentags#statusline()}
+
+" Configure make
+" Call script and provide current file path
+let &makeprg='~/scripts/compile_zephyr.sh %:p:h'
+
+" Session
+" Only save buffers on mksession
+set sessionoptions=buffers
+
+" Key mappings
+let mapleader = " "
+
+map <C-o> :NERDTreeToggle<CR>
+
+map <f5> :mksession! ~/.vimsession/lbise.vim<CR>
+map <f6> :source ~/.vimsession/lbise.vim<CR>
+map <f7> :TagbarToggle<CR>
+
+map <f9> :make<CR>
+map <C-f9> :!~/scripts/compile_zephyr.sh %:p:h clean<CR>
+map <S-f9> :!~/scripts/compile_zephyr.sh %:p:h distclean<CR>
+map <f10> :ConqueGdb -ex "target remote :2331" 
+map <C-f10> :ConqueGdb -ex "target remote :2341" 
+map <f12> :!~/scripts/run_checkpatch.sh %:p:h<CR>
+
+map <C-Left> :bn<CR>
+map <C-Right> :bp<CR>
