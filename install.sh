@@ -19,9 +19,12 @@ fi
 echo "OS: $OS ver $VER"
 
 if [ $OS = "Ubuntu" ]; then
-installcmd="apt-get install "
+	installcmd="apt-get install "
 elif [ $OS = "Fedora" ]; then
-installcmd="dnf install "
+	installcmd="dnf install "
+else
+	echo "$OS not supported"
+	exit 1
 fi
 
 # Install apps
@@ -50,6 +53,10 @@ if [ ! -d $HOME/.vim/autoload ]; then
 	# Ultisnips
 	git clone https://github.com/SirVer/ultisnips.git
 	vim -u NONE -c "helptags ultisnips/doc" -c q
+	# Snippets
+	git clone https://github.com/honza/vim-snippets.git
+	vim -u NONE -c "helptags vim-snippets/doc" -c q
+
 fi
 
 
