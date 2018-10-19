@@ -69,7 +69,7 @@ let g:ConqueTerm_ReadUnfocused = 1
 " gutentags
 " Exclude build directories
 let g:gutentags_ctags_exclude=[ "build" ]
-:set statusline+=%{gutentags#statusline()}
+set statusline+=%{gutentags#statusline()}
 
 " Configure make
 " Call script and provide current file path
@@ -92,7 +92,8 @@ endif
 
 map <C-o> :NERDTreeToggle<CR>
 
-map <f5> :mksession! ~/.vimsession/lbise.vim<CR>
+"map <f5> :mksession! ~/.vimsession/lbise.vim<CR>
+map <f5> :Obsession ~/.vimsession/lbise.vim<CR>
 map <f6> :source ~/.vimsession/lbise.vim<CR>
 map <f7> :TagbarToggle<CR>
 
