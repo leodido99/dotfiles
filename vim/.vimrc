@@ -14,6 +14,23 @@ set undoreload=10000
 set splitright
 set splitbelow
 set laststatus=2
+set incsearch		" Display search results as search string is typed
+set ruler		" Show the line and column number of the cursor position
+set wildmenu		" Command line completion shows menu
+set display+=lastline	" Display as much as possible of the last line in a window
+if &listchars ==# 'eol:$' " Change setlist displayed char
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j " Delete comment character when joining commented lines
+endif
+if &history < 1000
+  set history=1000
+endif
+if &tabpagemax < 50
+  set tabpagemax=50
+endif
+set sessionoptions-=options
 
 " Enable pathogen
 execute pathogen#infect()
