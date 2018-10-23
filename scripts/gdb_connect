@@ -1,0 +1,36 @@
+#!/usr/bin/bash
+# Connect to a given GDB server
+# $1: Executable to load
+# $2: 0 = sn0, 1 = sn1
+
+sn0port=2331
+sn1port=2341
+
+if [ -z "$1" ]
+then
+	exe="zephyr/zephyr.elf"
+else
+	exe=$1
+fi
+
+if [ -z "$2" ]
+then
+	port=$sn1port
+else
+	if [ "$2" == "0" ]
+	then
+		port=$sn0port
+	elif [ "$2" == "1" ]
+	then
+		port=$sn1port
+	else
+		echo "Unknown device $2"
+		exit 1
+	fi
+fi
+
+echo "Connecting to port $port load `realpath $exe`"
+remote="target remote :$port"
+#echo $remote
+arm-zephyr-eabi-gdb -tui -ex "$remote" $exe
+

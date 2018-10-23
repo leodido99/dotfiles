@@ -1,0 +1,40 @@
+#!/usr/bin/bash
+# Starts a Segger GDB server
+# $1: 0 = sn0, 1 = sn1
+# $2: Port number, default if not specified
+sn0="260103290"
+sn1="260108510"
+
+if [ -z "$1" ]
+then
+	sn=$sn0
+	port=2331
+	swoport=2332
+	telport=2333
+else
+	if [ "$1" == "0" ]
+	then
+		sn=$sn0
+		port=2331
+		swoport=2332
+		telport=2333
+	elif [ "$1" == "1" ]
+	then
+		sn=$sn1
+		port=2341
+		swoport=2342
+		telport=2343
+	else
+		echo "Unknown device $1"
+		exit 1
+	fi
+fi
+
+if [ -n "$2" ]
+then
+	port=$2
+fi
+
+echo "GDB server on device $sn port $port"
+JLinkGDBServer -device STM32L4A6VG -if SWD -select usb="$sn" -port $port -swoport $swoport -telnetport $telport
+
