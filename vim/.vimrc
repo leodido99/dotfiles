@@ -14,6 +14,7 @@ set undoreload=10000
 set splitright
 set splitbelow
 set laststatus=2
+set noshowmode		" Hide the default mode text
 set incsearch		" Display search results as search string is typed
 set ruler		" Show the line and column number of the cursor position
 set wildmenu		" Command line completion shows menu
