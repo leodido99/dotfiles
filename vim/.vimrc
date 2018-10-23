@@ -91,7 +91,7 @@ set statusline+=%{gutentags#statusline()}
 
 " Configure make
 " Call script and provide current file path
-let &makeprg='~/scripts/compile_zephyr.sh %:p:h'
+let &makeprg='compile_zephyr %:p:h'
 
 " Session
 " Only save buffers on mksession
@@ -116,11 +116,11 @@ map <f6> :source ~/.vimsession/lbise.vim<CR>
 map <f7> :TagbarToggle<CR>
 
 map <f9> :make<CR>
-map <C-f9> :!~/scripts/compile_zephyr.sh %:p:h clean<CR>
-map <S-f9> :!~/scripts/compile_zephyr.sh %:p:h distclean<CR>
+map <C-f9> :!compile_zephyr %:p:h clean<CR>
+map <S-f9> :!compile_zephyr %:p:h distclean<CR>
 map <f10> :ConqueGdb -ex "target remote :2331" 
 map <C-f10> :ConqueGdb -ex "target remote :2341" 
-map <f12> :!~/scripts/run_checkpatch.sh %:p:h<CR>
+map <f12> :!run_checkpatch %:p:h<CR>
 
 map <C-Left> :bn<CR>
 map <C-Right> :bp<CR>
