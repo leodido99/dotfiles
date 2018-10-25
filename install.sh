@@ -59,6 +59,9 @@ if [ ! -d $HOME/.vim/autoload ]; then
 	git clone https://github.com/honza/vim-snippets.git
 	vim -u NONE -c "helptags vim-snippets/doc" -c q
 
+	# vim-bufkill
+	git clone https://github.com/qpkorr/vim-bufkill ~/.vim/bundle/vim-bufkill
+	vim -u NONE -c "helptags vim-bufkill/doc" -c q
 fi
 
 
