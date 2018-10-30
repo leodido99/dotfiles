@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+# Start a work tmux session
+tmux new-session -n vim -s dev vim
+
