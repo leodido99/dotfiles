@@ -1,4 +1,6 @@
 set print pretty on
+set trace-commands on
+set logging on
 
 define zephyr_thread_print_state
 	set $thread_state = ((struct k_thread *)$arg0)->base.thread_state
