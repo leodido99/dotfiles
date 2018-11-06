@@ -1,4 +1,3 @@
 #!/usr/bin/bash
-# Start a work tmux session
+# Join an already created session
 tmux new-session -t dev -s dev-term
-tmux new-window

@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+gnome-terminal -- dev-tmux-vim
+gnome-terminal -- dev-tmux-term

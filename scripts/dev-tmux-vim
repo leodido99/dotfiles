@@ -1,4 +1,8 @@
 #!/usr/bin/bash
 # Start a work tmux session
-tmux new-session -n vim -s dev vim
-
+tmux new-session -d -s dev
+tmux new-window
+tmux send-keys 'work-tmux-pane 0' Enter
+tmux send-keys 'work-tmux-pane 1' Enter
+tmux send-keys 'vim' Enter
+tmux -2	attach-session -t dev

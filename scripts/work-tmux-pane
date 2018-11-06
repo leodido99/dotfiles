@@ -19,4 +19,4 @@ fi
 tmux new-window -n "device-${device}"
 tmux setw remain-on-exit on
 tmux split-window -h "gdb_server $device"
-tmux split-window -v "picocom_${device}"
+tmux split-window -v "minicom_${device}"
