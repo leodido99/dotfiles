@@ -74,7 +74,7 @@ let g:airline_solarized_bg='dark'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsSnippetDirectories=["/home/lbise/backup_stuff/vim/UltiSnips"]
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsListSnippets="<c-l>"
+"let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
@@ -129,6 +129,12 @@ execute "set <F11>=\e[23;*~"
 execute "set <F12>=\e[24;*~"
 endif
 
+" You shall learn using vim properly
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
 map <C-o> :NERDTreeToggle<CR>
 
 "map <f5> :mksession! ~/.vimsession/lbise.vim<CR>
@@ -145,3 +151,5 @@ map <f12> :!run_checkpatch %:p:h<CR>
 
 map <C-Left> :bn<CR>
 map <C-Right> :bp<CR>
+map <C-h> :bn<CR>
+map <C-l> :bp<CR>
