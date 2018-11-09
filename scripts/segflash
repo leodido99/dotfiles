@@ -1,0 +1,29 @@
+#!/bin/bash
+
+if [ "$#" -ne 2 ]; then
+	echo "Usage: segflash.sh <brm|brx|mch> <1|2>"
+	exit
+fi
+
+if  [ "$1" == "mch" ] || [ "$1" == "brx" ]; then
+	mcu=STM32L4A6RG
+elif [ "$1" == "brm" ]; then
+	mcu=STM32L4A6VG
+else
+	echo "Arg1 should be brm, brx or mch"
+	exit
+fi
+
+if [ "$2" == "1" ]; then
+	sn=260107415
+elif [ "$2" == "2" ]; then
+	#sn=260107676
+	#sn=260110685
+	sn=260110112
+else
+	echo "Arg2 should be 1 or 2 depending of segger used"
+	exit
+fi
+
+make -j8
+JLinkExe -device $mcu -if SWD -speed 4000 -SelectEmuBySN $sn -CommanderScript ~/.scripts/load.txt
