@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -ne 2 ]; then
-	echo "Usage: segflash.sh <brm|brx|mch> <1|2>"
+	echo "Usage: segflash <brm|brx|mch> <0|1>"
 	exit
 fi
 
@@ -14,16 +14,18 @@ else
 	exit
 fi
 
-if [ "$2" == "1" ]; then
-	sn=260107415
-elif [ "$2" == "2" ]; then
+if [ "$2" == "0" ]; then
+	#sn=26010741
+	sn=260103290
+elif [ "$2" == "1" ]; then
 	#sn=260107676
 	#sn=260110685
-	sn=260110112
+	#sn=260110112
+	sn=260108510
 else
-	echo "Arg2 should be 1 or 2 depending of segger used"
+	echo "Arg2 should be 0 or 1 depending of segger used"
 	exit
 fi
 
 make -j8
-JLinkExe -device $mcu -if SWD -speed 4000 -SelectEmuBySN $sn -CommanderScript ~/.scripts/load.txt
+JLinkExe -device $mcu -if SWD -speed 4000 -SelectEmuBySN $sn -CommanderScript ~/scripts/load.txt
