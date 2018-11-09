@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 # Start a work tmux session
 tmux new-session -d -s dev
-tmux new-window
+tmux new-window -n cmd
 tmux send-keys 'work-tmux-pane 0' Enter
 tmux send-keys 'work-tmux-pane 1' Enter
 tmux send-keys 'vim' Enter
