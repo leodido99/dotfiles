@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ "$#" -ne 2 ]; then
+	echo "Usage: segreset <brm|brx|mch> <0|1>"
+	exit
+fi
+
+if  [ "$1" == "mch" ] || [ "$1" == "brx" ]; then
+	mcu=STM32L4A6RG
+elif [ "$1" == "brm" ]; then
+	mcu=STM32L4A6VG
+else
+	echo "Arg1 should be brm, brx or mch"
+	exit
+fi
+
+if [ "$2" == "0" ]; then
+	#sn=26010741
+	sn=260103290
+elif [ "$2" == "1" ]; then
+	#sn=260107676
+	#sn=260110685
+	#sn=260110112
+	sn=260108510
+else
+	echo "Arg2 should be 0 or 1 depending of segger used"
+	exit
+fi
+
+JLinkExe -device $mcu -if SWD -speed 4000 -SelectEmuBySN $sn -CommanderScript ~/scripts/reset.txt
