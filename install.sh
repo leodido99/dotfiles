@@ -38,6 +38,10 @@ rm -f $HOME/.tmux.conf
 ln -s $PWD/tmux/.tmux.conf $HOME/.tmux.conf
 rm -rf $HOME/.scripts
 ln -s $PWD/scripts $HOME/.scripts
+rm -rf $HOME/.profile
+ln -s $PWD/term/.profile $HOME/.profile
+rm -rf $HOME/.zkbd
+ln -s $PWD/zsh/.zkbd $HOME/.zkdb
 
 # Setup vim
 if [ ! -d $HOME/.vim/autoload ]; then
