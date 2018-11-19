@@ -28,8 +28,11 @@ else
 fi
 
 # Install apps
-pkgs="vim git tmux chromium-browser"
+pkgs="vim git tmux chromium-browser zsh"
 sudo $installcmd $pkgs
+
+# Change default shell to zsh
+chsh -s $(which zsh)
 
 # Setup symlinks
 rm -f $HOME/.vimrc
@@ -40,6 +43,8 @@ rm -rf $HOME/.scripts
 ln -s $PWD/scripts $HOME/.scripts
 rm -rf $HOME/.profile
 ln -s $PWD/term/.profile $HOME/.profile
+rm -rf $HOME/.zshrc
+ln -s $PWD/zsh/.zshrc $HOME/.zshrc
 rm -rf $HOME/.zkbd
 ln -s $PWD/zsh/.zkbd $HOME/.zkdb
 
