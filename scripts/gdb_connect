@@ -31,6 +31,10 @@ fi
 
 echo "Connecting to port $port load `realpath $exe`"
 remote="target remote :$port"
-#echo $remote
+# Set term to screen otherwise it doesn't work
+prevterm=`echo $TERM`
+export TERM=screen
 arm-zephyr-eabi-gdb -tui -ex "$remote" $exe
+# Reset term
+export TERM=$prevterm
 
