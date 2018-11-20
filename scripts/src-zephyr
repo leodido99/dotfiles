@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+reporoot=`git rev-parse --show-toplevel 2>/dev/null`
+if [ "$reporoot" = "" ]; then
+	echo "$PWD not a git repo"
+else
+	zephyrenv=$reporoot/zephyr-env.sh
+	if [ ! -f $zephyrenv ]; then
+		echo "$zephyrenv doesn't exist, not a zephyr repo"
+	else
+		. $reporoot/zephyr-env.sh
+	fi
+fi
+
+
