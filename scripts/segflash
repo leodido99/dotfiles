@@ -28,4 +28,4 @@ else
 fi
 
 make -j8
-JLinkExe -device $mcu -if SWD -speed 4000 -SelectEmuBySN $sn -CommanderScript ~/scripts/load.txt
+JLinkExe -device $mcu -if SWD -speed 4000 -SelectEmuBySN $sn -CommanderScript ~/.scripts/load.txt

@@ -27,4 +27,4 @@ else
 	exit
 fi
 
-JLinkExe -device $mcu -if SWD -speed 4000 -SelectEmuBySN $sn -CommanderScript ~/scripts/reset.txt
+JLinkExe -device $mcu -if SWD -speed 4000 -SelectEmuBySN $sn -CommanderScript ~/.scripts/reset.txt
