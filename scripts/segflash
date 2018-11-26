@@ -1,5 +1,6 @@
 #!/bin/bash
-
+set -e
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
 if [ "$#" -ne 2 ]; then
 	echo "Usage: segflash <brm|brx|mch> <0|1>"
 	exit
