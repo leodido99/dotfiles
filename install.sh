@@ -34,6 +34,9 @@ sudo $installcmd $pkgs
 # Change default shell to zsh
 chsh -s $(which zsh)
 
+# Install oh my zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 # Setup symlinks
 rm -f $HOME/.vimrc
 ln -s $PWD/vim/.vimrc $HOME/.vimrc
