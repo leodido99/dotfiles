@@ -1,1 +1,1 @@
-minicom --color=on -m -b 115200 -D /dev/ttyACM1
+minicom -w --color=on -m -b 115200 -D /dev/ttyACM1
