@@ -12,6 +12,9 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # powerlevel9k config
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir nvm vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status history time)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
