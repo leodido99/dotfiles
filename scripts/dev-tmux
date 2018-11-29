@@ -2,5 +2,3 @@
 gnome-terminal -- dev-tmux-create-session
 sleep 2
 gnome-terminal -- dev-tmux-join-session
-echo "finished"
-exit 0
