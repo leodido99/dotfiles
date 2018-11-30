@@ -2,6 +2,7 @@
 set number		" Add line number
 set autowrite		" Write buffer on :next, :last etc...
 set autoread		" Read file on outside change
+set clipboard=unnamed	" Yank to primary clipboard (Requires vim-enhanced vim-X11 on Fedora)
 set exrc
 set secure
 set tabstop=8
