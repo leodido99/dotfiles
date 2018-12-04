@@ -39,6 +39,9 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 # Install powerlevel9k skin for oh my zsh
 git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
+# Install pygments for zsh colorized plugin
+pip install pygments
+
 # Setup symlinks
 rm -f $HOME/.vimrc
 ln -s $PWD/vim/.vimrc $HOME/.vimrc
