@@ -10,3 +10,6 @@ if [ "`vim --version | grep +clipboard`" = "" ]; then
 alias vi='vimx'
 alias vim='vimx'
 fi
+# zsh
+# Colorize
+alias cat="ccat"
