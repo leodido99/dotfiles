@@ -53,8 +53,8 @@ syntax enable
 colorscheme solarized8
 set background=dark
 
-" Highlight column 110
-set colorcolumn=110
+" Highlight column 80
+set colorcolumn=80
 highlight ColorColumn ctermbg=darkgray
 " Highlight trailing spaces
 " http://vim.wikia.com/wiki/Highlight_unwanted_spaces
