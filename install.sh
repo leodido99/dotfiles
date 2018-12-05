@@ -42,6 +42,20 @@ git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/theme
 # Install pygments for zsh colorized plugin
 pip install pygments
 
+mkdir $HOME/.fonts
+
+# Install adobe source code pro font
+wget https://github.com/adobe-fonts/source-code-pro/releases/download/variable-fonts/SourceCodeVariable-Italic.ttf $HOME/.fonts
+wget https://github.com/adobe-fonts/source-code-pro/releases/download/variable-fonts/SourceCodeVariable-Roman.ttf $HOME/.fonts
+
+# Install awesome font
+awesomefontspath="../awesome-terminal-fonts"
+git clone https://github.com/gabrielelana/awesome-terminal-fonts $awesomefontspath
+cp $awesomefontspath/build $HOME/.fonts
+fc-cache -fv $HOME/.fonts
+mkdir $HOME/.config/fontconfig
+cp $PWD/fonts/10-symbols.conf $HOME/.config/fontconfig/conf.d
+
 # Setup symlinks
 rm -f $HOME/.vimrc
 ln -s $PWD/vim/.vimrc $HOME/.vimrc
