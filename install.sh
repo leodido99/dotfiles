@@ -69,6 +69,10 @@ rm -rf $HOME/.zshrc
 ln -s $PWD/zsh/.zshrc $HOME/.zshrc
 rm -rf $HOME/.zkbd
 ln -s $PWD/zsh/.zkbd $HOME/.zkdb
+rm -rf $HOME/.gitconfig
+ln -s $PWD/git/.gitconfig $HOME/.gitconfig
+rm -rf $HOME/.gitignore
+ln -s $PWD/git/.gitignore $HOME/.gitignore
 
 # Setup vim
 if [ ! -d $HOME/.vim/autoload ]; then
