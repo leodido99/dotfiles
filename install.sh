@@ -44,17 +44,14 @@ pip install pygments
 
 mkdir $HOME/.fonts
 
-# Install adobe source code pro font
-wget https://github.com/adobe-fonts/source-code-pro/releases/download/variable-fonts/SourceCodeVariable-Italic.ttf $HOME/.fonts
-wget https://github.com/adobe-fonts/source-code-pro/releases/download/variable-fonts/SourceCodeVariable-Roman.ttf $HOME/.fonts
+# Install adobe source code pro font patched with awesome and powerline glyphs
+wget -P $HOME/.fonts/ https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf
 
-# Install awesome font
-awesomefontspath="../awesome-terminal-fonts"
-git clone https://github.com/gabrielelana/awesome-terminal-fonts $awesomefontspath
-cp $awesomefontspath/build $HOME/.fonts
+# Update font cache
 fc-cache -fv $HOME/.fonts
-mkdir $HOME/.config/fontconfig
-cp $PWD/fonts/10-symbols.conf $HOME/.config/fontconfig/conf.d
+
+# TODO Set this font as monospace system font with gnome-tweaks
+# gnome-terminal don't check use custom font
 
 # Setup symlinks
 rm -f $HOME/.vimrc
