@@ -50,8 +50,14 @@ set path=~/gitrepo/fwv6-main/**
 
 " Color scheme
 syntax enable
-colorscheme solarized8
-set background=dark
+"colorscheme solarized8
+"set background=dark
+let g:nord_underline = 1
+"let g:nord_italic = 1
+"let g:nord_italic_comments = 1
+"let g:nord_comment_brightness = 15
+"let g:nord_cursor_line_number_background = 1
+colorscheme nord
 
 " Highlight column 80
 set colorcolumn=80
@@ -67,9 +73,9 @@ autocmd BufWinLeave * call clearmatches()
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-"let g:airline_powerline_fonts = 1
+"let g:airline_theme='solarized'
+"let g:airline_solarized_bg='dark'
+let g:airline_powerline_fonts = 1
 
 " ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
