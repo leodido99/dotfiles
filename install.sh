@@ -94,6 +94,8 @@ if [ ! -d $HOME/.vim/autoload ]; then
 	# vim-bufkill
 	git clone https://github.com/qpkorr/vim-bufkill ~/.vim/bundle/vim-bufkill
 	vim -u NONE -c "helptags vim-bufkill/doc" -c q
+
+	ln -s $PWD/vim/git_pull_all.sh $HOME/git_pull_all.sh
 fi
 
 
