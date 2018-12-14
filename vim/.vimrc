@@ -2,7 +2,9 @@
 set number		" Add line number
 set autowrite		" Write buffer on :next, :last etc...
 set autoread		" Read file on outside change
-set clipboard=unnamed	" Yank to primary clipboard (Requires vim-enhanced vim-X11 on Fedora)
+set clipboard=unnamed	" Yank to primary clipboard
+			" (Requires vim-enhanced vim-X11 on Fedora)
+set cursorline		" Highlight cursor
 set exrc
 set secure
 set tabstop=8
@@ -55,8 +57,8 @@ syntax enable
 let g:nord_underline = 1
 "let g:nord_italic = 1
 "let g:nord_italic_comments = 1
-"let g:nord_comment_brightness = 15
-"let g:nord_cursor_line_number_background = 1
+let g:nord_comment_brightness = 15
+let g:nord_cursor_line_number_background = 1
 colorscheme nord
 
 " Highlight column 80
@@ -73,6 +75,12 @@ autocmd BufWinLeave * call clearmatches()
 
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
+" Disable branch name
+let g:airline#extensions#branch#enabled = 0
+" Disable tagbar integration
+let g:airline#extensions#tagbar#enabled = 0
+" Customize sections
+let g:airline_section_y = ""
 "let g:airline_theme='solarized'
 "let g:airline_solarized_bg='dark'
 let g:airline_powerline_fonts = 1
@@ -160,3 +168,6 @@ map <C-Left> :bn<CR>
 map <C-Right> :bp<CR>
 map <C-h> :bn<CR>
 map <C-l> :bp<CR>
+
+" Make double-<Esc> clear search highlights
+nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
