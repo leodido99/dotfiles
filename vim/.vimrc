@@ -93,12 +93,6 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 
-" ConqueGDB
-let g:ConqueGdb_GdbExe = 'arm-zephyr-eabi-gdb'
-let g:ConqueGdb_SrcSplit = "left"
-let g:ConqueTerm_CloseOnEnd = 1    " close conque when program ends running
-let g:ConqueTerm_ReadUnfocused = 1
-
 " gutentags
 " Exclude build directories
 let g:gutentags_ctags_exclude=[ "build" ]
@@ -160,8 +154,6 @@ map <f7> :TagbarToggle<CR>
 map <f9> :make<CR>
 map <C-f9> :!compile_zephyr %:p:h clean<CR>
 map <S-f9> :!compile_zephyr %:p:h distclean<CR>
-map <f10> :ConqueGdb -ex "target remote :2331" 
-map <C-f10> :ConqueGdb -ex "target remote :2341" 
 map <f12> :!run_checkpatch %:p:h<CR>
 
 map <C-Left> :bn<CR>
