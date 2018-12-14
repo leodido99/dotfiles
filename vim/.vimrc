@@ -77,8 +77,6 @@ autocmd BufWinLeave * call clearmatches()
 let g:airline#extensions#tabline#enabled = 1
 " Disable branch name
 let g:airline#extensions#branch#enabled = 0
-" Disable tagbar integration
-let g:airline#extensions#tagbar#enabled = 0
 " Customize sections
 let g:airline_section_y = ""
 "let g:airline_theme='solarized'
@@ -144,12 +142,9 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-map <C-o> :NERDTreeToggle<CR>
-
 "map <f5> :mksession! ~/.vimsession/lbise.vim<CR>
 map <f5> :Obsession ~/.vimsession/lbise.vim<CR>
 map <f6> :source ~/.vimsession/lbise.vim<CR>
-map <f7> :TagbarToggle<CR>
 
 map <f9> :make<CR>
 map <C-f9> :!compile_zephyr %:p:h clean<CR>
