@@ -1,6 +1,8 @@
 #!/bin/bash
-set -e
 # Any subsequent(*) commands which fail will cause the shell script to exit immediately
+set -e
+
+serialfile="$HOME/.scripts/segger_sn.txt"
 if [ "$#" -ne 2 ]; then
 	echo "Usage: segflash <brm|brx|mch> <0|1>"
 	exit
@@ -15,16 +17,10 @@ else
 	exit
 fi
 
-if [ "$2" == "0" ]; then
-	#sn=26010741
-	sn=260103290
-elif [ "$2" == "1" ]; then
-	#sn=260107676
-	#sn=260110685
-	#sn=260110112
-	sn=260108510
-else
-	echo "Arg2 should be 0 or 1 depending of segger used"
+serialidx=`expr $2 + 1`
+sn=`sed "${serialidx}q;d" $serialfile`
+if [ "$sn" == "" ]; then
+	echo "Cannot find segger serial number"
 	exit
 fi
 

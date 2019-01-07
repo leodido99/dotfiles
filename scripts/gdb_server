@@ -2,25 +2,27 @@
 # Starts a Segger GDB server
 # $1: 0 = sn0, 1 = sn1
 # $2: Port number, default if not specified
-sn0="260103290"
-sn1="260108510"
+
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
+set -e
+
+serialfile="$HOME/.scripts/segger_sn.txt"
 
 if [ -z "$1" ]
 then
-	sn=$sn0
+	serialidx=1
 	port=2331
 	swoport=2332
 	telport=2333
 else
+	serialidx=`expr $1 + 1`
 	if [ "$1" == "0" ]
 	then
-		sn=$sn0
 		port=2331
 		swoport=2332
 		telport=2333
 	elif [ "$1" == "1" ]
 	then
-		sn=$sn1
 		port=2341
 		swoport=2342
 		telport=2343
@@ -28,6 +30,12 @@ else
 		echo "Unknown device $1"
 		exit 1
 	fi
+fi
+
+sn=`sed "${serialidx}q;d" $serialfile`
+if [ "$sn" == "" ]; then
+	echo "Cannot find segger serial number"
+	exit
 fi
 
 if [ -n "$2" ]
