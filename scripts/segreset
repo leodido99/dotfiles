@@ -4,16 +4,16 @@ set -e
 
 serialfile="$HOME/.scripts/segger_sn.txt"
 if [ "$#" -ne 2 ]; then
-	echo "Usage: segreset <brm|brx|mch> <0|1>"
+	echo "Usage: segreset <brm|brx|mch|rbr> <0|1>"
 	exit
 fi
 
-if  [ "$1" == "mch" ] || [ "$1" == "brx" ]; then
+if  [ "$1" == "mch" ] || [ "$1" == "brx" ] || [ "$1" == "rbr" ]; then
 	mcu=STM32L4A6RG
 elif [ "$1" == "brm" ]; then
 	mcu=STM32L4A6VG
 else
-	echo "Arg1 should be brm, brx or mch"
+	echo "Arg1 should be brm, brx, mch or rbr"
 	exit
 fi
 
