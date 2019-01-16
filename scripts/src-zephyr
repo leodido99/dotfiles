@@ -9,6 +9,8 @@ else
 	else
 		. $reporoot/zephyr-env.sh
 	fi
+
+	echo $ZEPHYR_BASE
 fi
 
 
