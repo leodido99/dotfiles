@@ -158,4 +158,4 @@ map <C-h> :bn<CR>
 map <C-l> :bp<CR>
 
 " Make double-<Esc> clear search highlights
-nnoremap <silent> <Esc><Esc> <Esc>:nohlsearch<CR><Esc>
+nnoremap <silent> <Leader><Esc> <Esc>:nohlsearch<CR><Esc>
