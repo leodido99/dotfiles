@@ -1,15 +1,18 @@
 #!/usr/bin/bash
 # Reset MCU
-sn0=260103290
-sn1=260108510
-if [ -z "$1" ]; then
-	sn=$sn0
-else
-	if [ "$1" == "0" ]; then
-		sn=$sn0
-	elif [ "$1" == "1" ]; then
-		sn=$sn1
-	fi
+set -e
+
+if [ "$#" -ne 1 ]; then
+	echo "Usage: reset_mcu <sn index>"
+	exit
+fi
+
+serialfile="$HOME/.scripts/segger_sn.txt"
+serialidx=`expr $1 + 1`
+sn=`sed "${serialidx}q;d" $serialfile`
+if [ "$sn" == "" ]; then
+	echo "Cannot find segger serial number"
+	exit
 fi
 
 JLinkSTM32 -SelectEmuBySN $sn
