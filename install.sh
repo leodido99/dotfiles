@@ -51,6 +51,12 @@ sudo dnf install google-chrome-stable
 echo ""
 
 echo "#########################################################################"
+echo "Setup git"
+echo "#########################################################################"
+git/git.sh
+echo ""
+
+echo "#########################################################################"
 echo "Setup fonts"
 echo "#########################################################################"
 fonts/fonts.sh
@@ -68,7 +74,15 @@ echo "#########################################################################"
 vim/vim.sh
 echo ""
 
+echo "#########################################################################"
+echo "Setup tmux"
+echo "#########################################################################"
+tmux/tmux.sh
+echo ""
 
+
+
+# TODO Start system updates
 
 exit
 
@@ -77,45 +91,13 @@ exit
 
 
 # Setup symlinks
-rm -f $HOME/.vimrc
-ln -s $PWD/vim/.vimrc $HOME/.vimrc
 rm -f $HOME/.tmux.conf
 ln -s $PWD/tmux/.tmux.conf $HOME/.tmux.conf
 rm -rf $HOME/.scripts
 ln -s $PWD/scripts $HOME/.scripts
 rm -rf $HOME/.profile
 ln -s $PWD/term/.profile $HOME/.profile
-rm -rf $HOME/.gitconfig
-ln -s $PWD/git/.gitconfig $HOME/.gitconfig
-rm -rf $HOME/.gitignore
-ln -s $PWD/git/.gitignore $HOME/.gitignore
 
-# Setup vim
-if [ ! -d $HOME/.vim/autoload ]; then
-	bundlepath=$HOME/.vim/bundle
-	mkdir -p $HOME/.vim/autoload $bundlepath && \
-	curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
-	# Clone plugins
-	cd $bundlepath
-	# vim-fugitive
-	git clone https://github.com/tpope/vim-fugitive.git
-	vim -u NONE -c "helptags vim-fugitive/doc" -c q
-	# solarized8
-	git clone https://github.com/lifepillar/vim-solarized8.git
-	vim -u NONE -c "helptags vim-solarized8/doc" -c q
-	# Ultisnips
-	git clone https://github.com/SirVer/ultisnips.git
-	vim -u NONE -c "helptags ultisnips/doc" -c q
-	# Snippets
-	git clone https://github.com/honza/vim-snippets.git
-	vim -u NONE -c "helptags vim-snippets/doc" -c q
-
-	# vim-bufkill
-	git clone https://github.com/qpkorr/vim-bufkill ~/.vim/bundle/vim-bufkill
-	vim -u NONE -c "helptags vim-bufkill/doc" -c q
-
-	ln -s $PWD/vim/git_pull_all.sh $HOME/git_pull_all.sh
-fi
 
 
 
