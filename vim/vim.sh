@@ -60,6 +60,8 @@ if [ ! -d $HOME/.vim/autoload ]; then
 	REPO="https://github.com/tpope/vim-obsession.git"
 	git clone $REPO $BUNDLE/$PLUGIN
 	vim -u NONE -c "helptags $BUNDLE/$PLUGIN/doc" -c q
+	# Create session file folder
+	mkdir -p $HOME/.vimsession
 fi
 
 # Setup symlinks
