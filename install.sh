@@ -26,31 +26,37 @@ fi
 echo "OS: $OS ver $VER"
 
 if [ $OS = "Ubuntu" ]; then
-	installcmd="apt-get install"
+	installcmd="apt-get"
 elif [ $OS = "Fedora" ]; then
-	installcmd="dnf install"
+	installcmd="dnf"
 else
 	echo "$OS not supported"
 	exit 1
 fi
 
-echo "Using $installcmd to install packages"
+echo "Using $installcmd to manage packages"
+echo ""
+
+echo "#########################################################################"
+echo "Upgrade system"
+echo "#########################################################################"
+sudo $installcmd upgrade
 echo ""
 
 pkgs="vim vim-X11 tmux zsh python3 python3-pip gnome-tweaks"
 
 echo "#########################################################################"
-echo "Installing packages: $pkgs"
+echo "Install packages: $pkgs"
 echo "#########################################################################"
-sudo $installcmd $pkgs
+sudo $installcmd install $pkgs
 echo ""
 
 echo "#########################################################################"
-echo "Installing Chrome"
+echo "Install Chrome"
 echo "#########################################################################"
-sudo dnf install fedora-workstation-repositories
-sudo dnf config-manager --set-enabled google-chrome
-sudo dnf install google-chrome-stable
+sudo $installcmd install fedora-workstation-repositories
+sudo $installcmd config-manager --set-enabled google-chrome
+sudo $installcmd install google-chrome-stable
 echo ""
 
 echo "#########################################################################"
@@ -105,8 +111,10 @@ else
 fi
 echo ""
 
-
-
-# TODO Start system updates
+echo "#########################################################################"
+echo "Setup Zephyr"
+echo "#########################################################################"
+$DIR/zephyr/zephyr.sh $OS
+echo ""
 
 exit
