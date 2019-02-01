@@ -15,3 +15,8 @@ if [ ! -L $DSTDIR/$NAME ]; then
 else
 	echo "$DSTDIR/$NAME symlink already set"
 fi
+
+# Install gnome-terminal nord theme
+git clone https://github.com/arcticicestudio/nord-gnome-terminal.git $DIR/../../nord-gnome-terminal
+$DIR/../../nord-gnome-terminal/src/nord.sh
+echo "TODO Set Nord as default gnome-terminal profile"
