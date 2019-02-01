@@ -6,6 +6,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+echo "Install plugins by running prefix + I in tmux"
 
 # Setup symlinks
 NAME=".tmux.conf"
