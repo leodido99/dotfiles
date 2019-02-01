@@ -7,9 +7,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 # Install tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
-# Install tmux nord theme
-git clone https://github.com/arcticicestudio/nord-tmux ~/.tmux/themes/nord-tmux
-
 # Setup symlinks
 NAME=".tmux.conf"
 DSTDIR="$HOME"
