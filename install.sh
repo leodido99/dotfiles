@@ -1,6 +1,10 @@
 #!/bin/bash
 # Install dotfiles
 
+echo "#########################################################################"
+echo "Leo's dotfiles install script"
+echo "#########################################################################"
+
 # Detect OS
 if [ -f /etc/os-release ]; then
     . /etc/os-release
@@ -27,31 +31,50 @@ else
 	exit 1
 fi
 
-# Install apps
-pkgs="vim git tmux chromium-browser zsh"
+echo "Using $installcmd to install packages"
+echo ""
+
+pkgs="vim vim-X11 tmux zsh python3 python3-pip gnome-tweaks"
+
+echo "#########################################################################"
+echo "Installing packages: $pkgs"
+echo "#########################################################################"
 sudo $installcmd $pkgs
+echo ""
 
-# Change default shell to zsh
-chsh -s $(which zsh)
+echo "#########################################################################"
+echo "Installing Chrome"
+echo "#########################################################################"
+sudo dnf install fedora-workstation-repositories
+sudo dnf config-manager --set-enabled google-chrome
+sudo dnf install google-chrome-stable
+echo ""
 
-# Install oh my zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-# Install powerlevel9k skin for oh my zsh
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+echo "#########################################################################"
+echo "Setup fonts"
+echo "#########################################################################"
+fonts/fonts.sh
+echo ""
 
-# Install pygments for zsh colorized plugin
-pip install pygments
+echo "#########################################################################"
+echo "Setup zsh"
+echo "#########################################################################"
+zsh/zsh.sh
+echo ""
 
-mkdir $HOME/.fonts
+echo "#########################################################################"
+echo "Setup vim"
+echo "#########################################################################"
+vim/vim.sh
+echo ""
 
-# Install adobe source code pro font patched with awesome and powerline glyphs
-wget -P $HOME/.fonts/ https://github.com/gabrielelana/awesome-terminal-fonts/blob/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf
 
-# Update font cache
-fc-cache -fv $HOME/.fonts
 
-# TODO Set this font as monospace system font with gnome-tweaks
-# gnome-terminal don't check use custom font
+exit
+
+
+
+
 
 # Setup symlinks
 rm -f $HOME/.vimrc
@@ -62,10 +85,6 @@ rm -rf $HOME/.scripts
 ln -s $PWD/scripts $HOME/.scripts
 rm -rf $HOME/.profile
 ln -s $PWD/term/.profile $HOME/.profile
-rm -rf $HOME/.zshrc
-ln -s $PWD/zsh/.zshrc $HOME/.zshrc
-rm -rf $HOME/.zkbd
-ln -s $PWD/zsh/.zkbd $HOME/.zkdb
 rm -rf $HOME/.gitconfig
 ln -s $PWD/git/.gitconfig $HOME/.gitconfig
 rm -rf $HOME/.gitignore
