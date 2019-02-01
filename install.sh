@@ -1,6 +1,9 @@
 #!/bin/bash
 # Install dotfiles
 
+# Get script's dir
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
+
 echo "#########################################################################"
 echo "Leo's dotfiles install script"
 echo "#########################################################################"
@@ -23,9 +26,9 @@ fi
 echo "OS: $OS ver $VER"
 
 if [ $OS = "Ubuntu" ]; then
-	installcmd="apt-get install "
+	installcmd="apt-get install"
 elif [ $OS = "Fedora" ]; then
-	installcmd="dnf install "
+	installcmd="dnf install"
 else
 	echo "$OS not supported"
 	exit 1
@@ -53,31 +56,53 @@ echo ""
 echo "#########################################################################"
 echo "Setup git"
 echo "#########################################################################"
-git/git.sh
+$DIR/git/git.sh
 echo ""
 
 echo "#########################################################################"
 echo "Setup fonts"
 echo "#########################################################################"
-fonts/fonts.sh
+$DIR/fonts/fonts.sh
 echo ""
 
 echo "#########################################################################"
 echo "Setup zsh"
 echo "#########################################################################"
-zsh/zsh.sh
+$DIR/zsh/zsh.sh
 echo ""
 
 echo "#########################################################################"
 echo "Setup vim"
 echo "#########################################################################"
-vim/vim.sh
+$DIR/vim/vim.sh
 echo ""
 
 echo "#########################################################################"
 echo "Setup tmux"
 echo "#########################################################################"
-tmux/tmux.sh
+$DIR/tmux/tmux.sh
+echo ""
+
+echo "#########################################################################"
+echo "Setup terminal"
+echo "#########################################################################"
+$DIR/term/term.sh
+echo ""
+
+echo "#########################################################################"
+echo "Setup scripts"
+echo "#########################################################################"
+# Setup symlinks
+NAME=".scripts"
+DSTDIR="$HOME"
+SRCDIR="$DIR/scripts"
+if [ ! -L $DSTDIR/$NAME ]; then
+	echo "Setting $DSTDIR/$NAME symlink"
+	rm -rf $DSTDIR/$NAME
+	ln -s $SRCDIR $DSTDIR/$NAME
+else
+	echo "$DSTDIR/$NAME symlink already set"
+fi
 echo ""
 
 
@@ -85,19 +110,3 @@ echo ""
 # TODO Start system updates
 
 exit
-
-
-
-
-
-# Setup symlinks
-rm -f $HOME/.tmux.conf
-ln -s $PWD/tmux/.tmux.conf $HOME/.tmux.conf
-rm -rf $HOME/.scripts
-ln -s $PWD/scripts $HOME/.scripts
-rm -rf $HOME/.profile
-ln -s $PWD/term/.profile $HOME/.profile
-
-
-
-
