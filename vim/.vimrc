@@ -159,3 +159,5 @@ map <C-l> :bp<CR>
 
 " Make double-<Esc> clear search highlights
 nnoremap <silent> <Leader><Esc> <Esc>:nohlsearch<CR><Esc>
+" Remove all trailing and leading whitespaces
+map <F4> :%s/\s\+$//e<CR>
