@@ -24,5 +24,6 @@ if [ "$sn" == "" ]; then
 	exit
 fi
 
-make -j8
+nbcores=`cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l`
+make -j${nbcores}
 JLinkExe -device $mcu -if SWD -speed 4000 -SelectEmuBySN $sn -CommanderScript ~/.scripts/load.txt
