@@ -31,7 +31,8 @@ function build_proj()
 	eval $__resultvar=true
 	echo "Building project in $2"
 	cd $2
-	make -j
+	nbcores=`cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l`
+	make -j${nbcores}
 }
 
 function clean_proj()
