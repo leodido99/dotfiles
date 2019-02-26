@@ -1,1 +1,1 @@
-minicom -w --color=on -m -b 115200 -D /dev/ttyACM0
+minicom -w --color=on -m -b 115200 -D /dev/ttyACM0 -C ~/logs/minicom0_`date +"%Y-%m-%d-%H-%M"`.log
