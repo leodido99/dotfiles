@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -e
+FWV6JTAG=fw6_jtag.py
+HWVERSION="6.0.2"
+SECONDSTAGESLOT="boot2_1"
+SERIALS="$HOME/.scripts/segger_sn.txt"
+
+if [ "$#" -lt 2 ]; then
+	echo "Usage: $0 <device> <segger> [hw version]"
+	echo "device: brm|brx|mch"
+	echo "segger: Segger serial index"
+	echo "hw version: Hardware version of device"
+	exit
+fi
+
+if [ ! -f  $FWV6JTAG ]; then
+	echo "Cannot find $FWV6JTAG"
+	exit 1
+fi
+
+DEVICE="$1"
+if  [ "$DEVICE" != "mch" ] && [ "$DEVICE" != "brx" ] && [ "$DEVICE" != "brm" ]; then
+	echo "Unknown device $1"
+	exit 1
+fi
+
+if [ "$#" -eq 3 ]; then
+	HWVERSION="$3"
+fi
+
+SERIALIDX=`expr $2 + 1`
+SN=`sed "${SERIALIDX}q;d" $SERIALS`
+if [ "$SN" == "" ]; then
+	echo "Cannot find segger serial number"
+	exit 1
+fi
+
+# Install second stage
+echo "Installing bootloader second stage $DEVICE $HWVERSION using $SN"
+./$FWV6JTAG -u $SN geosatis/bootloader/secondstage -s boot2_1 -b $DEVICE--hw $HWVERSION
+
+# Install first stage
+echo "Installing bootloader first stage using $SN"
+./$FWV6JTAG -u $SN geosatis/bootloader/firststage -s boot1
