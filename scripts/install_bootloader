@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -e
-FWV6JTAG=fw6_jtag.py
 HWVERSION="6.0.2"
 SECONDSTAGESLOT="boot2_1"
 SERIALS="$HOME/.scripts/segger_sn.txt"
@@ -14,10 +13,13 @@ if [ "$#" -lt 2 ]; then
 	exit
 fi
 
-if [ ! -f  $FWV6JTAG ]; then
-	echo "Cannot find $FWV6JTAG"
+GITROOT=`git rev-parse --show-toplevel`
+if [ -z "$GITROOT" ]; then
+	echo "Not in a git repo, aborting"
 	exit 1
 fi
+
+FWV6JTAG="$GITROOT/geosatis/fw6_jtag.py"
 
 DEVICE="$1"
 if  [ "$DEVICE" != "mch" ] && [ "$DEVICE" != "brx" ] && [ "$DEVICE" != "brm" ]; then
@@ -42,13 +44,13 @@ fi
 
 # Install second stage
 echo "Installing bootloader second stage $DEVICE $HWVERSION using $SN"
-./$FWV6JTAG -u $SN geosatis/bootloader/secondstage -s boot2_1 -b $DEVICE --hw $HWVERSION
+$FWV6JTAG -u $SN geosatis/bootloader/secondstage -s boot2_1 -b $DEVICE --hw $HWVERSION
 
 # Install first stage
 echo "Installing bootloader first stage using $SN"
-./$FWV6JTAG -u $SN geosatis/bootloader/firststage -s boot1
+$FWV6JTAG -u $SN geosatis/bootloader/firststage -s boot1
 
 if [ "$FW" != "" ]; then
 echo "Flashing $FW"
-./$FWV6JTAG -u $SN $FW -b $DEVICE --hw $HWVERSION
+$FWV6JTAG -u $SN $FW -b $DEVICE --hw $HWVERSION
 fi
