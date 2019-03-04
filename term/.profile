@@ -15,3 +15,6 @@ fi
 # zsh
 # Colorize
 alias cat="ccat"
+
+# Execute scripts
+mount_geosatis

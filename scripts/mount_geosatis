@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
+SHARE_GEOSATIS="//fileserv.ju.geo-satis.com/geosatis"
 MOUNT_DIR_GEOSATIS="$HOME/share/geosatis"
-#MOUNT_DIR_HOME="$HOME/share/home"
 
-if [ ! -d "$MOUNT_DIR_GEOSATIS" ]; then
-	mkdir -p $MOUNT_DIR_GEOSATIS
+if mount | grep $MOUNT_DIR_GEOSATIS > /dev/null; then
+	# Already mounted
+	exit
+else
+	echo "Mounting $SHARE_GEOSATIS to $MOUNT_DIR_GEOSATIS"
+	if [ ! -d "$MOUNT_DIR_GEOSATIS" ]; then
+		mkdir -p $MOUNT_DIR_GEOSATIS
+	fi
+
+	sudo mount -t cifs -o username=lbise $SHARE_GEOSATIS $MOUNT_DIR_GEOSATIS
 fi
-
-if [ ! -d "$MOUNT_DIR_HOME" ]; then
-	mkdir $MOUNT_DIR_HOME
-fi
-
-sudo mount -t cifs -o username=lbise //fileserv.ju.geo-satis.com/geosatis $MOUNT_DIR_GEOSATIS
-#sudo mount -t cifs -o username=lbise //fileserv.ju.geo-satis.com/private/lbise $MOUNT_DIR_HOME
