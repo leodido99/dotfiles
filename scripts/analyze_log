@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+declare -a search=("Booting" "BUS FAULT")
+declare -a search_desc=("Reboots" "Bus faults")
+if [ "$#" -lt 1 ]; then
+	echo "Usage: $0 <log>"
+	echo "log: Log file to analyze"
+	exit 1
+fi
+
+if [ ! -f "$1" ]; then
+	echo "$1 does not exist"
+	exit 1
+fi
+
+FILE="$1"
+
+IDX=0
+for i in "${search[@]}"
+do
+	echo -n "${search_desc[$IDX]}: "
+	cat $FILE | grep -c "$i"
+	IDX=$IDX+1
+done
