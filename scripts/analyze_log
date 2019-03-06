@@ -2,22 +2,42 @@
 declare -a search=("Booting" "BUS FAULT")
 declare -a search_desc=("Reboots" "Bus faults")
 if [ "$#" -lt 1 ]; then
-	echo "Usage: $0 <log>"
+	echo "Usage: $0 [options] <log>"
+	echo "options:"
+	echo "-p: Print each error found"
 	echo "log: Log file to analyze"
 	exit 1
 fi
 
-if [ ! -f "$1" ]; then
-	echo "$1 does not exist"
+PRINT=false
+# Check options
+if [ "$#" -gt 1 ]; then
+	for opt in "$@"
+	do
+		case $opt in
+		"-p"*)
+			PRINT=true
+			;;
+		esac
+	done
+fi
+
+# File name is last param
+for FILE; do true; done
+
+if [ ! -f "$FILE" ]; then
+	echo "$FILE does not exist"
 	exit 1
 fi
 
-FILE="$1"
-
+echo "Analyzing $FILE"
 IDX=0
 for i in "${search[@]}"
 do
 	echo -n "${search_desc[$IDX]}: "
-	cat $FILE | grep -c "$i"
+	cat "$FILE" | grep -a -c "$i"
+	if [ $PRINT = true ]; then
+		cat "$FILE" | grep -a -n "$i"
+	fi
 	IDX=$IDX+1
 done
