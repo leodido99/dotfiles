@@ -4,6 +4,8 @@ export PATH=$PATH:~/.scripts
 export PATH=$PATH:/opt/zephyr-sdk/sysroots/x86_64-pokysdk-linux/usr/bin/arm-zephyr-eabi
 # Add pip install path
 export PATH=~/.local/bin:$PATH
+# Set JAVA_HOME
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.2.7-0.fc29.x86_64
 
 # Aliases
 alias zephyr-env=". src-zephyr"
