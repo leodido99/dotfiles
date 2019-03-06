@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-declare -a search=("Booting" "BUS FAULT")
-declare -a search_desc=("Reboots" "Bus faults")
+declare -a search=("Booting" "BUS FAULT" "segment retransmission exceeds")
+declare -a search_desc=("Reboots" "Bus faults" "TCP aborts")
+
 if [ "$#" -lt 1 ]; then
 	echo "Usage: $0 [options] <log>"
 	echo "options:"
@@ -31,6 +32,7 @@ if [ ! -f "$FILE" ]; then
 fi
 
 echo "Analyzing $FILE"
+echo ""
 IDX=0
 for i in "${search[@]}"
 do
@@ -38,6 +40,7 @@ do
 	cat "$FILE" | grep -a -c "$i"
 	if [ $PRINT = true ]; then
 		cat "$FILE" | grep -a -n "$i"
+		echo ""
 	fi
 	IDX=$IDX+1
 done
