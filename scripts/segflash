@@ -2,6 +2,10 @@
 # Any subsequent(*) commands which fail will cause the shell script to exit immediately
 set -e
 
+if [ -z "${ZEPHYR_BASE}" ]; then
+	. src-zephyr
+fi
+
 serialfile="$HOME/.scripts/segger_sn.txt"
 if [ "$#" -ne 2 ]; then
 	echo "Usage: segflash <brm|brx|mch|rbr> <0|1>"

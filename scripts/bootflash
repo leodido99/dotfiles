@@ -44,4 +44,8 @@ if [ "$SN" == "" ]; then
 	exit 1
 fi
 
+if [ -z "${ZEPHYR_BASE}" ]; then
+	. src-zephyr
+fi
+
 $FWV6JTAG -u $SN $FW -b $DEVICE --hw $HWVERSION

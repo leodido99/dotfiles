@@ -42,6 +42,10 @@ if [ "$SN" == "" ]; then
 	exit 1
 fi
 
+if [ -z "${ZEPHYR_BASE}" ]; then
+	. src-zephyr
+fi
+
 # Install second stage
 echo "Installing bootloader second stage $DEVICE $HWVERSION using $SN"
 $FWV6JTAG -u $SN geosatis/bootloader/secondstage -s boot2_1 -b $DEVICE --hw $HWVERSION
