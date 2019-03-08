@@ -19,4 +19,4 @@ fi
 alias cat="ccat"
 
 # Execute scripts
-mount_geosatis
+#mount_geosatis
