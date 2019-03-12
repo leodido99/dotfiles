@@ -157,7 +157,10 @@ map <C-Right> :bp<CR>
 map <C-h> :bn<CR>
 map <C-l> :bp<CR>
 
-" Make double-<Esc> clear search highlights
+" Clear search highlights
 nnoremap <silent> <Leader><Esc> <Esc>:nohlsearch<CR><Esc>
 " Remove all trailing and leading whitespaces
 map <F4> :%s/\s\+$//e<CR>
+" Copy/paste to system clipboard
+noremap <Leader>y "*y
+noremap <Leader>p "*p
