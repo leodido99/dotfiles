@@ -10,11 +10,11 @@ chsh -s $(which zsh)
 # Install oh my zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-# Install powerlevel9k skin for oh my zsh
-NAME=powerlevel9k
-DSTDIR="$HOME/.oh-my-zsh/custom/themes/powerlevel9k"
+# Install powerlevel10k skin for oh my zsh
+NAME=powerlevel10k
+DSTDIR="$HOME/.oh-my-zsh/custom/themes/powerlevel10k"
 if [ ! -d "$DSTDIR" ]; then
-	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+	git clone https://github.com/romkatv/powerlevel10k.git $DSTDIR
 else
 	echo "$NAME already installed"
 fi
