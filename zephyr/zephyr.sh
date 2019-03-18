@@ -25,7 +25,7 @@ elif [ $1 = "Fedora" ]; then
 sudo dnf group install "Development Tools" "C Development Tools and Libraries"
 sudo dnf install git ninja-build gperf ccache dfu-util dtc wget \
   python3-pip xz file glibc-devel.i686 libstdc++-devel.i686
-
+sudo dnf install protobuf-compiler
 else
 	echo "$OS not supported"
 	exit 1
@@ -39,6 +39,9 @@ pip3 install --user -r $HOME/gitrepo/zephyr/scripts/requirements.txt
 
 # Install cmake through pip3 otherwise version is too old
 pip3 install --user cmake
+
+# Install protobuf
+pip3 install --user protobuf
 
 # Clone Zephyr SDK
 if [ ! -d /opt/zephyr-sdk ]; then
