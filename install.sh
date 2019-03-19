@@ -1,5 +1,7 @@
 #!/bin/bash
 # Install dotfiles
+# TODO:
+# - Harmonize install script parameters (OS and INSTALLCMD for all)
 
 # Get script's dir
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
@@ -26,21 +28,21 @@ fi
 echo "OS: $OS ver $VER"
 
 if [ $OS = "Ubuntu" ]; then
-	installcmd="apt-get"
+	INSTALLCMD="apt-get"
 elif [ $OS = "Fedora" ]; then
-	installcmd="dnf"
+	INSTALLCMD="dnf"
 else
 	echo "$OS not supported"
 	exit 1
 fi
 
-echo "Using $installcmd to manage packages"
+echo "Using $INSTALLCMD to manage packages"
 echo ""
 
 echo "#########################################################################"
 echo "Upgrade system"
 echo "#########################################################################"
-sudo $installcmd upgrade
+sudo $INSTALLCMD upgrade
 echo ""
 
 pkgs="vim vim-X11 tmux zsh python3 python3-pip gnome-tweaks"
@@ -48,15 +50,15 @@ pkgs="vim vim-X11 tmux zsh python3 python3-pip gnome-tweaks"
 echo "#########################################################################"
 echo "Install packages: $pkgs"
 echo "#########################################################################"
-sudo $installcmd install $pkgs
+sudo $INSTALLCMD install $pkgs
 echo ""
 
 echo "#########################################################################"
 echo "Install Chrome"
 echo "#########################################################################"
-sudo $installcmd install fedora-workstation-repositories
-sudo $installcmd config-manager --set-enabled google-chrome
-sudo $installcmd install google-chrome-stable
+sudo $INSTALLCMD install fedora-workstation-repositories
+sudo $INSTALLCMD config-manager --set-enabled google-chrome
+sudo $INSTALLCMD install google-chrome-stable
 echo ""
 
 echo "#########################################################################"
@@ -121,6 +123,12 @@ echo "#########################################################################"
 echo "Setup Zephyr"
 echo "#########################################################################"
 $DIR/zephyr/zephyr.sh $OS
+echo ""
+
+echo "#########################################################################"
+echo "Setup i3"
+echo "#########################################################################"
+$DIR/i3/i3.sh $OS $INSTALLCMD
 echo ""
 
 exit
