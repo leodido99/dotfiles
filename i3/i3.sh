@@ -9,7 +9,7 @@ INSTALLCMD=$2
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 # Install i3
-sudo $INSTALLCMD i3 dmenu feh
+sudo $INSTALLCMD i3 i3status i3lock dmenu feh xautolock
 
 # Setup symlinks
 NAME=".config/i3/config"
