@@ -193,6 +193,11 @@ exec --no-startup-id feh --bg-scale ~/Pictures/star_nebula_glow_94217_1920x1080.
 focus_follows_mouse no
 
 # Bindings
+# Screen lock
 set $i3lockcmd "i3lock -t -c 000000 -u -i Pictures/star_nebula_glow_94217_1920x1080.png"
 bindsym $mod+x exec $i3lockcmd
 exec --no-startup-id xautolock -time 10 -locker $i3lockcmd
+# Volume
+bindsym $mod+KP_Add exec amixer -q set Master 2%+ unmute
+bindsym $mod+KP_Subtract exec amixer -q set Master 2%- unmute
+bindsym $mod+KP_Multiply exec amixer -q set Master toggle
