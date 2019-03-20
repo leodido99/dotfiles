@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-declare -a search=("Booting" "BUS FAULT" "Watchdog fired" "segment retransmission exceeds" "Crypto chip communication failure")
-declare -a search_desc=("Reboots" "Bus faults" "Watchdog fired" "TCP aborts" "Crypto chip failures")
+declare -a search=("Booting" "BUS FAULT" "Watchdog fired" "segment retransmission exceeds" "Crypto chip communication failure" "TLS Handshake end" "TLS Handshake fail")
+declare -a search_desc=("Reboots" "Bus faults" "Watchdog fired" "TCP aborts" "Crypto chip failures" "Handshake total" "Handshake fail")
 
 if [ "$#" -lt 1 ]; then
 	echo "Usage: $0 [options] <log>"
