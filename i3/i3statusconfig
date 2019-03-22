@@ -1,0 +1,46 @@
+general {
+	colors=false
+	interval=5
+	markup=pango
+}
+
+#order+="disk /home"
+#order+="ethernet enp1s0"
+order+="battery 1"
+order+="tztime date"
+order+="tztime time"
+
+disk "/home" {
+	format="<span background='#f8f8f2' foreground='#272822'>  %free </span>"
+}
+
+#order+="wireless wlan0"
+#wireless wlan0 {
+#format_up="<span background='#f8f8f2' foreground='#272822'>  Connected </span>"
+#format_down="<span background='#f8f8f2' foreground='#272822'>  Disconnected </span>"
+#}
+
+ethernet enp1s0 {
+	format_up="<span background='#f8f8f2' foreground='#272822'>  Connected </span>"
+		format_down="<span background='#f8f8f2' foreground='#272822'>  Disconnected </span>"
+}
+battery 1 {
+	format="<span background='#f8f8f2' foreground='#272822'> %status | %percentage </span>"
+		format_down="No Battery"
+		status_chr=" Charging"
+		status_bat=" Battery"
+		status_unk="? Unknown"
+		status_full=" Full"
+		path="/sys/class/power_supply/BAT%d/uevent"
+		low_threshold=25
+}
+
+tztime date {
+        format="<span background='#f8f8f2' foreground='#272822'>  %time </span>"
+	format_time="%d %b"
+}
+
+tztime time {
+        format="<span background='#f8f8f2' foreground='#272822'>  %time </span>"
+	format_time="%H:%M"
+}
