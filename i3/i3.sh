@@ -23,4 +23,14 @@ else
 	echo "$DSTDIR/$NAME symlink already set"
 fi
 
+NAME=".config/i3status/config"
+DSTDIR="$HOME"
+SRCDIR="$DIR/i3statusconfig"
+if [ ! -L $DSTDIR/$NAME ]; then
+	echo "Setting $DSTDIR/$NAME symlink"
+	rm -rf $DSTDIR/$NAME
+	ln -s $SRCDIR $DSTDIR/$NAME
+else
+	echo "$DSTDIR/$NAME symlink already set"
+fi
 
