@@ -105,7 +105,7 @@ set $ws6 "6 Music"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
+set $ws10 "10 Laptop"
 
 set $monitorPrimary DP-3-1
 set $monitorSecondary DP-3-2
@@ -117,6 +117,10 @@ workspace $ws3 output $monitorSecondary
 workspace $ws4 output $monitorPrimary
 workspace $ws5 output $monitorPrimary
 workspace $ws6 output $monitorPrimary
+workspace $ws7 output $monitorPrimary
+workspace $ws8 output $monitorSecondary
+workspace $ws9 output $monitorSecondary
+workspace $ws10 output $monitorLaptop
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -201,3 +205,6 @@ exec --no-startup-id xautolock -time 10 -locker $i3lockcmd
 bindsym $mod+KP_Add exec amixer -q set Master 2%+ unmute
 bindsym $mod+KP_Subtract exec amixer -q set Master 2%- unmute
 bindsym $mod+KP_Multiply exec amixer -q set Master toggle
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2%- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
