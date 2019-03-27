@@ -113,8 +113,8 @@ set $monitorLaptop eDP-1
 
 workspace $ws1 output $monitorPrimary
 workspace $ws2 output $monitorSecondary
-workspace $ws3 output $monitorSecondary
-workspace $ws4 output $monitorPrimary
+workspace $ws3 output $monitorPrimary
+workspace $ws4 output $monitorSecondary
 workspace $ws5 output $monitorPrimary
 workspace $ws6 output $monitorPrimary
 workspace $ws7 output $monitorPrimary
