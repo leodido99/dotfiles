@@ -3,14 +3,49 @@ set -e
 HWVERSION="6.0.2"
 SERIALS="$HOME/.scripts/segger_sn.txt"
 
-if [ "$#" -lt 3 ]; then
-	echo "Usage: $0 <device> <segger> <fw> [hw version]"
-	echo "device: brm|brx|mch"
-	echo "segger: Segger serial index"
-	echo "fw: Firmware to load"
-	echo "hw version: Hardware version of device"
-	exit
-fi
+function print_usage {
+echo "Usage: $0 [OPTION] BINARY"
+echo ""
+echo "Flashes a firmware to the application slot used by the bootloader"
+echo "BINARY: Firmware to flash"
+echo "OPTION:"
+echo "	-h : Help message"
+echo "	-d <device>: Device to program (brm|brx|mch)"
+echo "	-i <index>: Segger serial index to use for programming"
+echo "	-w <version>: Hardware version of the device to program (Default is 6.0.2)"
+}
+
+while getopts "hd:i:w:" opt; do
+case "$opt" in
+h)
+	print_usage
+	exit 0
+	;;
+d)
+	DEVICE=$OPTARG
+	if [ "$DEVICE" != "brm" ] && [ "$DEVICE" != "brx" ] && [ "$DEVICE" != "mch" ]
+	then
+		echo "Unknown device type $DEVICE"
+		exit 1
+	fi
+	;;
+i)
+	SERIALIDX=`expr $OPTARG + 1`
+	;;
+w)
+	HWVERSION=$OPTARG
+	if [ $HWVERSION != "6.0.2" ] && [ $HWVERSION != "6.0.3" ]; then
+		echo "Invalid HW version $HWVERSION"
+		exit 1
+	fi
+	;;
+\?)
+	echo "Invalid option: -$OPTARG" >&2
+	;;
+esac
+done
+
+shift $((OPTIND-1))
 
 GITROOT=`git rev-parse --show-toplevel`
 if [ -z "$GITROOT" ]; then
@@ -25,19 +60,8 @@ if [ ! -f $FWV6JTAG ]; then
 	exit 1
 fi
 
-DEVICE="$1"
-if  [ "$DEVICE" != "mch" ] && [ "$DEVICE" != "brx" ] && [ "$DEVICE" != "brm" ]; then
-	echo "Unknown device $1"
-	exit 1
-fi
+FW="$1"
 
-FW="$3"
-
-if [ "$#" -ge 4 ]; then
-	HWVERSION="$4"
-fi
-
-SERIALIDX=`expr $2 + 1`
 SN=`sed "${SERIALIDX}q;d" $SERIALS`
 if [ "$SN" == "" ]; then
 	echo "Cannot find segger serial number"
