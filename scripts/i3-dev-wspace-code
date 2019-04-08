@@ -13,5 +13,5 @@ gnome-terminal
 i3-msg 'layout tabbed'
 sleep 0.2
 cd $HOME/gitrepo/fwv6-main
-vim
+vimx
 #i3-msg 
