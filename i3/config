@@ -208,3 +208,7 @@ bindsym $mod+KP_Multiply exec amixer -q set Master toggle
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2%+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2%- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
+# Screenshot
+bindsym --release Print exec scrot 'screenshot_%Y-%m-%d-%s_$wx$h.jpg' -e 'mv $f ~/Pictures/'
+bindsym --release Shift+Print exec scrot 'screenshot_%Y-%m-%d-%s_$wx$h.jpg' -s -e 'mv $f ~/Pictures/'
+bindsym --release Control+Print exec scrot 'screenshot_%Y-%m-%d-%s_$wx$h.jpg' -s -e 'mv $f ~/Pictures/'
