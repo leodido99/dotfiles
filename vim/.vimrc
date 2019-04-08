@@ -164,3 +164,7 @@ map <F4> :%s/\s\+$//e<CR>
 " Copy/paste to system clipboard
 noremap <Leader>y "*y
 noremap <Leader>p "*p
+
+" FileType specific
+" Python
+au FileType python setlocal expandtab shiftwidth=4 tabstop=4
