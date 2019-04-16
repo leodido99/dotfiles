@@ -9,6 +9,7 @@ export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-11.0.2.7-0.fc29.x86_64
 
 # Aliases
 alias zephyr-env=". src-zephyr"
+alias esp32-env=". src-esp32"
 # If vim is missing clipboard support use vimx instead
 if [ "`vim --version | grep +clipboard`" = "" ]; then
 alias vi='vimx'
