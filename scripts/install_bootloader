@@ -57,6 +57,7 @@ fi
 FWV6JTAG="$GITROOT/geosatis/fw6_jtag.py"
 
 FW="$1"
+shift
 
 SN=`sed "${SERIALIDX}q;d" $SERIALS`
 if [ "$SN" == "" ]; then
@@ -68,11 +69,16 @@ if [ -z "${ZEPHYR_BASE}" ]; then
 	. src-zephyr
 fi
 
-echo "$FW $DEVICE $HWVERSION $SN"
+echo "Flashing $FW $DEVICE $HWVERSION $SN"
+
+if [ "$1" == "--" ]; then
+	shift
+	ARGS=$@
+fi
 
 # Install second stage
 echo "Installing bootloader second stage $DEVICE $HWVERSION using $SN"
-$FWV6JTAG -u $SN geosatis/bootloader/secondstage -s boot2_1 -b $DEVICE --hw $HWVERSION
+$FWV6JTAG -u $SN geosatis/bootloader/secondstage -s boot2_1 -b $DEVICE --hw $HWVERSION $ARGS
 
 # Install first stage
 echo "Installing bootloader first stage using $SN"
