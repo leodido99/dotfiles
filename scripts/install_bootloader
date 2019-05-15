@@ -71,6 +71,7 @@ fi
 
 echo "Flashing $FW $DEVICE $HWVERSION $SN"
 
+# Send all remaining args further
 if [ "$1" == "--" ]; then
 	shift
 	ARGS=$@
