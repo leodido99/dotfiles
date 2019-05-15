@@ -195,6 +195,7 @@ exec --no-startup-id feh --bg-scale ~/Pictures/star_nebula_glow_94217_1920x1080.
 
 # Options
 focus_follows_mouse no
+default_border none
 
 # Bindings
 # Screen lock
