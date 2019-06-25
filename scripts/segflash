@@ -28,6 +28,7 @@ if [ "$sn" == "" ]; then
 	exit
 fi
 
+LOG="$HOME/logs/segger/log_`date +"%Y-%m-%d_%H-%M-%S"`.log"
 nbcores=`cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l`
 make -j${nbcores}
-JLinkExe -device $mcu -if SWD -speed 4000 -SelectEmuBySN $sn -CommanderScript ~/.scripts/load.txt
+JLinkExe -log $LOG -device $mcu -if SWD -speed 4000 -SelectEmuBySN $sn -CommanderScript ~/.scripts/load.txt
