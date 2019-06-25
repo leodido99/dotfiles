@@ -1,4 +1,4 @@
-"set statusline+=%F " Set file name in status line
+set shell=/bin/zsh
 set number		" Add line number
 set autowrite		" Write buffer on :next, :last etc...
 set autoread		" Read file on outside change
@@ -6,6 +6,7 @@ set clipboard+=unnamed	" Yank to primary clipboard
 			" (Requires vim-enhanced vim-X11 on Fedora)
 set ttimeoutlen=10	" Lower delay on exit insert mode
 set cursorline		" Highlight cursor
+set ttyfast
 set exrc
 set secure
 set tabstop=8
