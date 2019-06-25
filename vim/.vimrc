@@ -95,7 +95,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 " gutentags
 " Exclude build directories
 let g:gutentags_ctags_exclude=[ "build" ]
-set statusline+=%{gutentags#statusline()}
 
 " Configure make
 " Call script and provide current file path
@@ -162,7 +161,7 @@ nnoremap <silent> <Leader><Esc> <Esc>:nohlsearch<CR><Esc>
 " Remove all trailing and leading whitespaces
 map <F4> :%s/\s\+$//e<CR>
 " Copy/paste to system clipboard
-noremap <Leader>y "*y
+noremap <Leader>y "*y \| :let @+=@*<CR>
 noremap <Leader>p "*p
 
 " FileType specific
