@@ -35,7 +35,7 @@ i)
 	;;
 w)
 	HWVERSION=$OPTARG
-	if [ $HWVERSION != "6.0.2" ] && [ $HWVERSION != "6.0.3" ]; then
+	if [ $HWVERSION != "6.0.2" ] && [ $HWVERSION != "6.0.3" ] && [ $HWVERSION != "6.0.4" ]; then
 		echo "Invalid HW version $HWVERSION"
 		exit 1
 	fi
@@ -79,13 +79,13 @@ fi
 
 # Install second stage
 echo "Installing bootloader second stage $DEVICE $HWVERSION using $SN"
-$FWV6JTAG -u $SN geosatis/bootloader/secondstage -s boot2_1 -b $DEVICE --hw $HWVERSION $ARGS
+$FWV6JTAG -u $SN geosatis/bootloader/secondstage -s boot2_1 -b $DEVICE --hw $HWVERSION "$ARGS"
 
 # Install first stage
 echo "Installing bootloader first stage using $SN"
-$FWV6JTAG -u $SN geosatis/bootloader/firststage -s boot1
+$FWV6JTAG -u $SN geosatis/bootloader/firststage -s boot1 "$ARGS"
 
 if [ "$FW" != "" ]; then
 	echo "Flashing $FW"
-	$FWV6JTAG -u $SN $FW -b $DEVICE --hw $HWVERSION
+	$FWV6JTAG -u $SN $FW -b $DEVICE --hw $HWVERSION "$ARGS"
 fi
