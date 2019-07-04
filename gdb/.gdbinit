@@ -1,5 +1,12 @@
 set print pretty on
 set logging on
+# Hack add path to needed libs for SDK 0.9.5
+python
+sys.path.append(os.getenv('HOME') + '/.local/lib/python3.7/site-packages')
+sys.path.append('/usr/lib/python3.7/site-packages')
+end
+source ~/.scripts/gdb/svd-dump.py
+svd_load STMicro STM32L4x6.svd
 
 define zephyr_thread_print_state
 	set $thread_state = ((struct k_thread *)$arg0)->base.thread_state
