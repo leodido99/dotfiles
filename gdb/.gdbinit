@@ -1,5 +1,5 @@
 set print pretty on
-set logging on
+#set logging on
 # Hack add path to needed libs for SDK 0.9.5
 python
 sys.path.append(os.getenv('HOME') + '/.local/lib/python3.7/site-packages')
@@ -7,6 +7,38 @@ sys.path.append('/usr/lib/python3.7/site-packages')
 end
 source ~/.scripts/gdb/svd-dump.py
 svd_load STMicro STM32L4x6.svd
+
+# ========== PYTHON SCRIPTS ==========
+python
+import gdb
+
+def bigEndian16(val):
+	return '{:04x}'.format(((int(val) & 0xFF00) >> 8) | ((int(val) & 0xFF) << 8))
+
+class zPrintIpv6Addr(gdb.Command):
+	def __init__(self):
+		# This registers our class as "simple_command"
+		super(zPrintIpv6Addr, self).__init__("z_print_ipv6_addr", gdb.COMMAND_DATA)
+
+	def invoke(self, arg, from_tty):
+		addr = gdb.parse_and_eval('{}'.format(arg))
+		addr = addr.dereference()
+		addr = addr['in6_u']
+		addr = addr['u6_addr16']
+		addr_str = ''
+		addr_size = int(addr.type.sizeof / addr[0].type.sizeof)
+		for i in range(addr_size):
+			addr_str += bigEndian16(addr[i])
+			if i < addr_size - 1:
+				addr_str += ':'
+		print(addr_str)
+
+# This registers our class to the gdb runtime at "source" time.
+zPrintIpv6Addr()
+
+end
+
+# ========== END PYTHON SCRIPTS ==========
 
 define zephyr_thread_print_state
 	set $thread_state = ((struct k_thread *)$arg0)->base.thread_state
