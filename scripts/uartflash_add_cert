@@ -9,8 +9,7 @@ if [ "$SERIAL" = "" ]; then
 fi
 
 echo "Getting public key for $SERIAL"
-mkdir -p ~/dev/$SERIAL
-openssl ec -pubin -in ~/Downloads/deviceKeypairPublicKey1_${SERIAL}.pem -outform der -out ~/dev/${SERIAL}/${SERIAL}.der
+openssl ec -pubin -in ~/Downloads/deviceKeypairPublicKey1_${SERIAL}.pem -outform der -out ~/dev/${SERIAL}.der
 
 # Copy device cert to RaGeS
 cp $CERTIF_PATH/deviceTestCertificate_${SERIAL}.der ${RAGES_PATH}/deviceCertificate/deviceCertificate_${SERIAL}.der
