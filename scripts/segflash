@@ -16,6 +16,8 @@ if  [ "$1" == "mch" ] || [ "$1" == "brx" ] || [ "$1" == "rbr" ]; then
 	mcu=STM32L4A6RG
 elif [ "$1" == "brm" ]; then
 	mcu=STM32L4A6VG
+elif [ "$1" == "rbr2" ]; then
+	mcu=STM32F479II
 else
 	echo "Arg1 should be brm, brx, mch or rbr"
 	exit
