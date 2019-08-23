@@ -24,23 +24,11 @@ pip3 install --user pygments
 
 # Setup symlinks
 NAME=".zshrc"
-DSTDIR="$HOME"
-SRCDIR="$DIR"
-if [ ! -L $DSTDIR/$NAME ]; then
-	echo "Setting $DSTDIR/$NAME symlink"
-	rm -rf $DSTDIR/$NAME
-	ln -s $SRCDIR/$NAME $DSTDIR/$NAME
-else
-	echo "$DSTDIR/$NAME symlink already set"
-fi
+SRC="$DIR/$NAME"
+DST="$HOME/$NAME"
+$DIR/../tools/sym_link.sh $SRC $DST
 
 NAME=".zkbd"
-DSTDIR="$HOME"
-SRCDIR="$DIR"
-if [ ! -L $DSTDIR/$NAME ]; then
-	echo "Setting $DSTDIR/$NAME symlink"
-	rm -rf $DSTDIR/$NAME
-	ln -s $SRCDIR/$NAME $DSTDIR/$NAME
-else
-	echo "$DSTDIR/$NAME symlink already set"
-fi
+SRC="$DIR/$NAME"
+DST="$HOME/$NAME"
+$DIR/../tools/sym_link.sh $SRC $DST

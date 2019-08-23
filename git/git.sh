@@ -6,35 +6,16 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
 # Setup symlinks
 NAME=".gitconfig"
-DSTDIR="$HOME"
-SRCDIR="$DIR"
-if [ ! -L $DSTDIR/$NAME ]; then
-	echo "Setting $DSTDIR/$NAME symlink"
-	rm -rf $DSTDIR/$NAME
-	ln -s $SRCDIR/$NAME $DSTDIR/$NAME
-else
-	echo "$DSTDIR/$NAME symlink already set"
-fi
+SRC="$DIR/$NAME"
+DST="$HOME/$NAME"
+$DIR/../tools/sym_link.sh $SRC $DST
 
 NAME=".gitignore"
-DSTDIR="$HOME"
-SRCDIR="$DIR"
-if [ ! -L $DSTDIR/$NAME ]; then
-	echo "Setting $DSTDIR/$NAME symlink"
-	rm -rf $DSTDIR/$NAME
-	ln -s $SRCDIR/$NAME $DSTDIR/$NAME
-else
-	echo "$DSTDIR/$NAME symlink already set"
-fi
+SRC="$DIR/$NAME"
+DST="$HOME/$NAME"
+$DIR/../tools/sym_link.sh $SRC $DST
 
-mkdir -p $HOME/.git/hooks
 NAME="commit-msg"
-DSTDIR="$HOME/.git/hooks"
-SRCDIR="$DIR"
-if [ ! -L $DSTDIR/$NAME ]; then
-	echo "Setting $DSTDIR/$NAME symlink"
-	rm -rf $DSTDIR/$NAME
-	ln -s $SRCDIR/$NAME $DSTDIR/$NAME
-else
-	echo "$DSTDIR/$NAME symlink already set"
-fi
+SRC="$DIR/$NAME"
+DST="$HOME/.git/hooks/$NAME"
+$DIR/../tools/sym_link.sh $SRC $DST

@@ -6,6 +6,9 @@
 # Get script's dir
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
+# Determine package manager
+source $DIR/../tools/pkg_mgr.sh
+
 echo "#########################################################################"
 echo "Leo's dotfiles install script"
 echo "#########################################################################"
@@ -26,15 +29,6 @@ else
 fi
 
 echo "OS: $OS ver $VER"
-
-if [ $OS = "Ubuntu" ]; then
-	INSTALLCMD="apt-get"
-elif [ $OS = "Fedora" ]; then
-	INSTALLCMD="dnf"
-else
-	echo "$OS not supported"
-	exit 1
-fi
 
 echo "Using $INSTALLCMD to manage packages"
 echo ""
@@ -85,11 +79,11 @@ echo "#########################################################################"
 $DIR/vim/vim.sh
 echo ""
 
-echo "#########################################################################"
-echo "Setup tmux"
-echo "#########################################################################"
-$DIR/tmux/tmux.sh
-echo ""
+#echo "#########################################################################"
+#echo "Setup tmux"
+#echo "#########################################################################"
+#$DIR/tmux/tmux.sh
+#echo ""
 
 echo "#########################################################################"
 echo "Setup terminal"
@@ -101,16 +95,9 @@ echo "#########################################################################"
 echo "Setup scripts"
 echo "#########################################################################"
 # Setup symlinks
-NAME=".scripts"
-DSTDIR="$HOME"
-SRCDIR="$DIR/scripts"
-if [ ! -L $DSTDIR/$NAME ]; then
-	echo "Setting $DSTDIR/$NAME symlink"
-	rm -rf $DSTDIR/$NAME
-	ln -s $SRCDIR $DSTDIR/$NAME
-else
-	echo "$DSTDIR/$NAME symlink already set"
-fi
+SRC="$DIR/scripts"
+DST="$HOME/.scripts"
+$DIR/../tools/sym_link.sh $SRC $DST
 echo ""
 
 echo "#########################################################################"
@@ -128,7 +115,7 @@ echo ""
 echo "#########################################################################"
 echo "Setup i3"
 echo "#########################################################################"
-$DIR/i3/i3.sh $OS $INSTALLCMD
+$DIR/i3/i3.sh
 echo ""
 
 exit
