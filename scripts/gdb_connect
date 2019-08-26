@@ -34,7 +34,7 @@ remote="target remote :$port"
 # Set term to screen otherwise it doesn't work
 prevterm=`echo $TERM`
 export TERM=screen
-arm-zephyr-eabi-gdb -tui -ex "$remote" $exe
+${ZEPHYR_SDK_INSTALL_DIR}/sysroots/x86_64-pokysdk-linux/usr/bin/arm-zephyr-eabi/arm-zephyr-eabi-gdb -tui -ex "$remote" $exe
 # Reset term
 export TERM=$prevterm
 

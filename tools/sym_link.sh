@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # Create a sym link
 if [ -z $1 ] || [ -z $2 ]; then
 	echo "Missing arguments"

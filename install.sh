@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Install dotfiles
 # TODO:
 # - Harmonize install script parameters (OS and INSTALLCMD for all)

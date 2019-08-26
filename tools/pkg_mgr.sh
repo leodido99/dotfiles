@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # Determine which package manager to use
 MGRS=( dnf apt-get brew yum )
 
