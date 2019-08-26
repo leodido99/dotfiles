@@ -54,25 +54,14 @@ fi
 
 # Setup symlinks
 NAME=".zephyrrc_SDK_0_10_0"
-DSTDIR="$HOME"
-SRCDIR="$DIR"
-if [ ! -L $DSTDIR/$NAME ]; then
-	echo "Setting $DSTDIR/$NAME symlink"
-	rm -rf $DSTDIR/$NAME
-	ln -s $SRCDIR/$NAME $DSTDIR/$NAME
-else
-	echo "$DSTDIR/$NAME symlink already set"
-fi
+SRC="$DIR/$NAME"
+DST="$HOME/$NAME"
+$DIR/../tools/sym_link.sh $SRC $DST
 
 NAME=".zephyrrc_SDK_0_9_5"
-DSTDIR="$HOME"
-SRCDIR="$DIR"
-if [ ! -L $DSTDIR/$NAME ]; then
-	echo "Setting $DSTDIR/$NAME symlink"
-	rm -rf $DSTDIR/$NAME
-	ln -s $SRCDIR/$NAME $DSTDIR/$NAME
-else
-	echo "$DSTDIR/$NAME symlink already set"
-fi
+SRC="$DIR/$NAME"
+DST="$HOME/$NAME"
+$DIR/../tools/sym_link.sh $SRC $DST
 
-fi
+fi # Setup zephyr = yes
+
