@@ -29,12 +29,22 @@ else
 	fi
 fi
 
+SDK_VER=$(basename "${ZEPHYR_SDK_INSTALL_DIR}")
+echo "SDK version $SDK_VER"
+
+if [ "$SDK_VER" == "zephyr-sdk-0.9.5" ]; then
+	TOOLCHAIN_FOLDER=$ZEPHYR_SDK_INSTALL_DIR/sysroots/x86_64-pokysdk-linux/usr/bin/arm-zephyr-eabi
+
+elif [ "$SDK_VER" == "zephyr-sdk-0.10.0" ]; then
+	TOOLCHAIN_FOLDER=$ZEPHYR_SDK_INSTALL_DIR/arm-zephyr-eabi/bin
+else
+	echo "Unknown SDK version"
+	exit
+fi
+
+GDB="arm-zephyr-eabi-gdb"
 echo "Connecting to port $port load `realpath $exe`"
 remote="target remote :$port"
-# Set term to screen otherwise it doesn't work
-prevterm=`echo $TERM`
-export TERM=screen
-${ZEPHYR_SDK_INSTALL_DIR}/sysroots/x86_64-pokysdk-linux/usr/bin/arm-zephyr-eabi/arm-zephyr-eabi-gdb -tui -ex "$remote" $exe
-# Reset term
-export TERM=$prevterm
 
+# Use this when toolchain is updated
+$TOOLCHAIN_FOLDER/$GDB -ex "$remote" $exe
