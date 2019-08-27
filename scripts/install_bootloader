@@ -56,8 +56,8 @@ fi
 
 FWV6JTAG="$GITROOT/geosatis/fw6_jtag.py"
 
-FW="$1"
-shift
+#FW="$1"
+#shift
 
 SN=`sed "${SERIALIDX}q;d" $SERIALS`
 if [ "$SN" == "" ]; then
@@ -76,16 +76,16 @@ if [ "$1" == "--" ]; then
 	shift
 	ARGS=$@
 fi
-
+ARGS=$@
 # Install second stage
 echo "Installing bootloader second stage $DEVICE $HWVERSION using $SN"
-$FWV6JTAG -u $SN geosatis/bootloader/secondstage -s boot2_1 -b $DEVICE --hw $HWVERSION "$ARGS"
+$FWV6JTAG -u $SN geosatis/bootloader/secondstage -s boot2_1 -b $DEVICE --hw $HWVERSION $ARGS
 
 # Install first stage
 echo "Installing bootloader first stage using $SN"
-$FWV6JTAG -u $SN geosatis/bootloader/firststage -s boot1 "$ARGS"
+$FWV6JTAG -u $SN geosatis/bootloader/firststage -s boot1 $ARGS
 
 if [ "$FW" != "" ]; then
 	echo "Flashing $FW"
-	$FWV6JTAG -u $SN $FW -b $DEVICE --hw $HWVERSION "$ARGS"
+	$FWV6JTAG -u $SN $FW -b $DEVICE --hw $HWVERSION $ARGS
 fi
