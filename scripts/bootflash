@@ -76,9 +76,6 @@ fi
 # Send all remaining args further
 if [ "$1" == "--" ]; then
 	shift
-	ARGS=$@
 fi
 
-$FWV6JTAG -u $SN $FW -b $DEVICE --hw $HWVERSION "$ARGS"
-echo "$FWV6JTAG -u $SN $FW -b $DEVICE --hw $HWVERSION "$ARGS""
-
+$FWV6JTAG -u $SN $FW -b $DEVICE --hw $HWVERSION "$@"
