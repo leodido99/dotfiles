@@ -23,8 +23,18 @@ class zPrintIpv6Addr(gdb.Command):
 	def invoke(self, arg, from_tty):
 		addr = gdb.parse_and_eval('{}'.format(arg))
 		addr = addr.dereference()
-		addr = addr['in6_u']
-		addr = addr['u6_addr16']
+		if 'struct in6_addr' in str(addr.type):
+			addr = addr['in6_u']
+			addr = addr['u6_addr16']
+		elif 'struct sockaddr_in6' in str(addr.type):
+			addr = addr['sin6_addr']
+			addr = addr['in6_u']
+			addr = addr['u6_addr16']
+		elif 'struct sockaddr' in str(addr.type):
+			addr = addr['data']
+		else:
+			print('Unknown type \'{}\''.format(addr.type))
+			return
 		addr_str = ''
 		addr_size = int(addr.type.sizeof / addr[0].type.sizeof)
 		for i in range(addr_size):
