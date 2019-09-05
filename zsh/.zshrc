@@ -134,6 +134,9 @@ fi
 
 setopt notify    # immediate job notifications
 
+# 10ms for key sequences
+KEYTIMEOUT=1
+
 # History
 HISTSIZE=10000
 SAVEHIST=10000
