@@ -22,7 +22,7 @@ if [ ! -d $HOME/.vim/autoload ]; then
 	vim -u NONE -c "helptags $BUNDLE/$PLUGIN/doc" -c q
 
 	PLUGIN="vim-snippets"
-	REPO="https://github.com/honza/vim-snippets.git"
+	REPO="https://github.com/lbise/vim-snippets.git"
 	git clone $REPO $BUNDLE/$PLUGIN
 	vim -u NONE -c "helptags $BUNDLE/$PLUGIN/doc" -c q
 
