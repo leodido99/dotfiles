@@ -44,5 +44,6 @@ then
 fi
 
 echo "GDB server on device $sn port $port"
-JLinkGDBServer -device STM32L4A6VG -if SWD -select usb="$sn" -port $port -swoport $swoport -telnetport $telport
+#JLinkGDBServer -device STM32L4A6VG -if SWD -select usb="$sn" -port $port -swoport $swoport -telnetport $telport
+JLinkGDBServer -device STM32F479II -if SWD -select usb="$sn" -port $port -swoport $swoport -telnetport $telport
 
