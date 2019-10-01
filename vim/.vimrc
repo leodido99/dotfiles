@@ -1,5 +1,14 @@
 set shell=/bin/zsh
 set number		" Add line number
+set relativenumber	" Add relative line number (number + relative = hybrid)
+
+" Toggle between relative / norelative
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
 set autowrite		" Write buffer on :next, :last etc...
 set autoread		" Read file on outside change
 set clipboard+=unnamed	" Yank to primary clipboard
@@ -87,7 +96,7 @@ let g:airline_powerline_fonts = 1
 
 " ultisnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsSnippetDirectories=["/home/lbise/backup_stuff/vim/UltiSnips"]
+" snippets used are those of the vim-snippets bundle see ~/.vimrc/bundle/vim-snippets
 let g:UltiSnipsExpandTrigger="<tab>"
 "let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
