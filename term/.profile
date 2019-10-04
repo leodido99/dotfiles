@@ -13,6 +13,7 @@ if [ "`vim --version | grep +clipboard`" = "" ]; then
 alias vi='vimx'
 alias vim='vimx'
 fi
+alias urxvt='urxvt-ml'
 # zsh
 
 # Execute scripts
