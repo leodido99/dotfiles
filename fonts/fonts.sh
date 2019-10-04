@@ -27,6 +27,12 @@ NAME="pomicons-regular"
 cp $SRCDIR/$NAME.ttf $DSTDIR
 cp $SRCDIR/$NAME.sh $DSTDIR
 
+# Nerd font
+cd $DSTDIR
+curl -fLo "Sauce Code Pro Nerd Font Complete Mono.otf" https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/SourceCodePro/Regular/complete/Sauce%20Code%20Pro%20Nerd%20Font%20Complete%20Mono.ttf
+
+cd $DIR
+
 # Update font cache
 fc-cache -fv $DSTDIR
 
