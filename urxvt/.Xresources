@@ -18,13 +18,18 @@ URxvt.geometry: 92x30
 URxvt.internalBorder: 12
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: false
-URxvt.saveline: 2048
-URxvt.scrollBar: false
-URxvt.scrollBar_right: false
+URxvt.saveline: 100000
 URxvt.urgentOnBell: true
 URxvt.depth: 24
 URxvt.iso14755: false
 URxvt*fading: 10 ! % brightness reduction on focus loss
+
+!! Scrolling
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt*scrollTtyOutput:      false
+URxvt*scrollWithBuffer:     true
+URxvt*scrollTtyKeypress:    true
 
 !! Copy Paste & Other Extensions
 URxvt.urlLauncher: google-chrome-stable
