@@ -205,7 +205,8 @@ bar {
 exec --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --pos 3840x0 --crtc 1 --output HDMI-3 --off --output HDMI-2 --off --output HDMI-1 --off --output DP-3-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --crtc 0 --output DP-3-3 --off --output DP-3-2 --mode 1920x1080 --pos 0x0 --rotate normal --crtc 2 --output DP-3 --off --output DP-2 --off --output DP-1 --off
 
 # Set wallpaper
-exec --no-startup-id feh --bg-scale ~/Pictures/star_nebula_glow_94217_1920x1080.jpg
+#exec --no-startup-id feh --bg-scale ~/Pictures/star_nebula_glow_94217_1920x1080.jpg
+exec --no-startup-id feh --randomize --bg-scale ~/gitrepo/wallpapers
 
 # Options
 focus_follows_mouse no
@@ -213,9 +214,10 @@ default_border none
 
 # Bindings
 # Screen lock
-set $i3lockcmd "i3lock -t -c 000000 -u -i Pictures/star_nebula_glow_94217_1920x1080.png"
-bindsym $mod+x exec $i3lockcmd
-exec --no-startup-id xautolock -time 10 -locker $i3lockcmd
+#set $i3lockcmd "i3lock -t -c 000000 -u -i Pictures/star_nebula_glow_94217_1920x1080.png"
+#set $i3lockcmd "i3lock -t -c 000000 -u -i $(find ~/gitrepo/wallpapers -name \"*.jpg\" | shuf -n1)"
+bindsym $mod+x exec locki3.sh
+exec --no-startup-id xautolock -time 10 -locker locki3.sh
 # Volume
 bindsym $mod+KP_Add exec amixer -q set Master 2%+ unmute
 bindsym $mod+KP_Subtract exec amixer -q set Master 2%- unmute
