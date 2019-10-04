@@ -152,4 +152,4 @@ autoload -Uz compinit
 compinit
 
 source ~/.profile
-source ~/.fonts/*.sh
+#source ~/.fonts/*.sh
