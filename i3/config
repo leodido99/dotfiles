@@ -215,10 +215,10 @@ default_border none
 
 # Bindings
 # Screen lock
-#set $i3lockcmd "i3lock -t -c 000000 -u -i Pictures/star_nebula_glow_94217_1920x1080.png"
+set $i3lockcmd "i3lock -t -c 000000 -u -i ~/gitrepo/wallpapers/lockscreen/star_nebula_glow_94217_1920x1080.png"
 #set $i3lockcmd "i3lock -t -c 000000 -u -i $(find ~/gitrepo/wallpapers -name \"*.jpg\" | shuf -n1)"
-bindsym $mod+x exec locki3.sh
-exec --no-startup-id xautolock -time 10 -locker locki3.sh
+bindsym $mod+x exec $i3lockcmd
+exec --no-startup-id xautolock -time 10 -locker $i3lockcmd
 # Volume
 bindsym $mod+KP_Add exec amixer -q set Master 2%+ unmute
 bindsym $mod+KP_Subtract exec amixer -q set Master 2%- unmute
