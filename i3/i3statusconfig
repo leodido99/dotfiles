@@ -6,7 +6,7 @@ general {
 
 #order+="disk /home"
 #order+="ethernet enp1s0"
-order+="battery 1"
+order+="battery 0"
 order+="tztime date"
 order+="tztime time"
 
@@ -24,7 +24,7 @@ ethernet enp1s0 {
 	format_up="<span background='#f8f8f2' foreground='#272822'>  Connected </span>"
 		format_down="<span background='#f8f8f2' foreground='#272822'>  Disconnected </span>"
 }
-battery 1 {
+battery 0 {
 	format="<span background='#f8f8f2' foreground='#272822'> %status | %percentage </span>"
 		format_down="No Battery"
 		status_chr=" Charging"
