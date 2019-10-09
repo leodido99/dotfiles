@@ -38,3 +38,10 @@ URxvt*scrollTtyKeypress:    true
 URxvt.urlLauncher: google-chrome-stable
 URxvt.underlineURLs: true
 URxvt.urlButton: 1
+
+!! Bindings
+! Rebind copy/paste
+URxvt.keysym.Control-Meta-c: builtin-string:
+URxvt.keysym.Control-Meta-v: builtin-string:
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
