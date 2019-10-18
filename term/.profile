@@ -2,6 +2,8 @@
 export PATH=$PATH:~/.scripts
 # Add pip install path
 export PATH=~/.local/bin:$PATH
+# Add govvv
+export PATH=~/go/src/github.com/ahmetb/govvv:$PATH
 # Set JAVA_HOME
 export JAVA_HOME=/usr/lib/jvm/java-11
 
