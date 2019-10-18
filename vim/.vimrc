@@ -101,6 +101,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 "let g:UltiSnipsListSnippets="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+"let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/snippets"
 
 " gutentags
 " Exclude build directories
