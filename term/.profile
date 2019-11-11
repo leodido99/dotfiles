@@ -4,6 +4,8 @@ export PATH=$PATH:~/.scripts
 export PATH=~/.local/bin:$PATH
 # Add govvv
 export PATH=~/go/src/github.com/ahmetb/govvv:$PATH
+# Add IPCAN
+export PATH=~/gitrepo/fwv6-main/geosatis/tools/ipcan:$PATH
 # Set JAVA_HOME
 export JAVA_HOME=/usr/lib/jvm/java-11
 
