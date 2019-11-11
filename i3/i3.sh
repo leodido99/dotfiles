@@ -8,7 +8,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 source $DIR/../tools/pkg_mgr.sh
 
 # Install i3
-sudo $INSTALLCMD i3 i3status i3lock dmenu feh xautolock
+sudo $INSTALLCMD i3 i3status i3lock rofi feh xautolock
 
 # Setup symlinks
 NAME="config"
@@ -20,5 +20,11 @@ $DIR/../tools/sym_link.sh $SRC $DST
 NAME="config"
 DSTFOLDER=".config/i3status"
 SRC="$DIR/i3statusconfig"
+DST="$HOME/$DSTFOLDER/$NAME"
+$DIR/../tools/sym_link.sh $SRC $DST
+
+NAME="config"
+DSTFOLDER=".config/rofi"
+SRC="$DIR/configrofi"
 DST="$HOME/$DSTFOLDER/$NAME"
 $DIR/../tools/sym_link.sh $SRC $DST
