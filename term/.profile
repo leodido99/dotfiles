@@ -2,8 +2,8 @@
 export PATH=$PATH:~/.scripts
 # Add pip install path
 export PATH=~/.local/bin:$PATH
-# Add govvv
-export PATH=~/go/src/github.com/ahmetb/govvv:$PATH
+# Add go/bin
+export PATH=$PATH:$(go env GOPATH)/bin
 # Add IPCAN
 export PATH=~/gitrepo/fwv6-main/geosatis/tools/ipcan:$PATH
 # Set JAVA_HOME
