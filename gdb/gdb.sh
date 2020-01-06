@@ -3,11 +3,13 @@
 # Get script's dir
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)"
 
-# TODO
+# .gdbinit is gdb dashboard https://github.com/cyrus-and/gdb-dashboard/
+wget -P ~ https://git.io/.gdbinit
 
-# Setup symlinks
-#SRC="$DIR/.gdbinit"
-#DST="$HOME/.scripts"
-#$DIR/../tools/sym_link.sh $SRC $DST
+# Instal pygments for synthax highlighting
+pip install --user pygments
 
-
+# When using dashboard, user files are stored in .gdbinit.d folder
+SRC="$DIR/.gdbinit.d"
+DST="$HOME/.gdbinit.d"
+$DIR/../tools/sym_link.sh $SRC $DST

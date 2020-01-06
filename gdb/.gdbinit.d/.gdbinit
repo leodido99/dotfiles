@@ -1,10 +1,31 @@
+# GDB
 set print pretty on
+set pagination off
+
+# Dashboard
+define layout-default
+	dashboard -layout source stack
+	dashboard source -style height 30
+end
+
+define layout-detailed
+	dashboard -layout registers source stack variables
+	dashboard source -style height 20
+end
+
+define layout-assembly
+	dashboard -layout source assembly stack
+	dashboard source -style height 20
+end
+
+layout-default
+
 #set logging on
 # Hack add path to needed libs for SDK 0.9.5
-python
-sys.path.append(os.getenv('HOME') + '/.local/lib/python3.7/site-packages')
-sys.path.append('/usr/lib/python3.7/site-packages')
-end
+#python
+#sys.path.append(os.getenv('HOME') + '/.local/lib/python3.7/site-packages')
+#sys.path.append('/usr/lib/python3.7/site-packages')
+#end
 source ~/.scripts/gdb/svd-dump.py
 svd_load STMicro STM32L4x6.svd
 
