@@ -45,10 +45,10 @@ if __name__ == '__main__':
         if args.flash_bootloader:
             flasher.flash(args.seg_index, z_root + '/' + BOOTLOADER_2, [ '-s', 'boot2_1' ] + args.args)
             # Do not specify board when building first stage
-            tmp = args.args.copy()
-            del tmp[tmp.index('-b') + 1]
-            tmp.remove('-b')
-            del tmp[tmp.index('--hw') + 1]
-            tmp.remove('--hw')
-            flasher.flash(args.seg_index, z_root + '/' + BOOTLOADER_1, [ '-s', 'boot1' ] + tmp)
+ #            tmp = args.args.copy()
+ #            del tmp[tmp.index('-b') + 1]
+ #            tmp.remove('-b')
+ #            del tmp[tmp.index('--hw') + 1]
+ #            tmp.remove('--hw')
+            flasher.flash(args.seg_index, z_root + '/' + BOOTLOADER_1, [ '-s', 'boot1' ] + args.args)
         flasher.flash(args.seg_index, z_root + '/' + args.firmware, args.args)
