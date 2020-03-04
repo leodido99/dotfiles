@@ -69,3 +69,12 @@ NAME=".vimrc"
 SRC="$DIR/$NAME"
 DST="$HOME/$NAME"
 $DIR/../tools/sym_link.sh $SRC $DST
+
+# Create after directory used at add additional configs to vim
+mkdir $HOME/.vim/after
+
+NAME="syntax"
+SRC="$DIR/$NAME"
+DST="$HOME/.vim/after/$NAME"
+$DIR/../tools/sym_link.sh $SRC $DST
+
