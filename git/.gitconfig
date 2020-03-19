@@ -47,7 +47,7 @@
 	cam = commit -am
 	cne = commit --no-edit
 	co = checkout
-	s = status -sb
+	s = status
 	d = diff
 	cp = cherry-pick
 	l = log --graph --pretty=format:'%C(magenta)%h%C(blue)%d%Creset %s %C(blue bold)- %an, %ad%Creset'
