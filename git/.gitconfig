@@ -9,7 +9,7 @@
 
 [core]
 	editor = vim
-	hooksPath = ~/gitrepo/myhooks
+	hooksPath = ~/.git/myhooks
 
 [user]
 	name = Léonard Bise

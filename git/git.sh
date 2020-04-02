@@ -15,7 +15,8 @@ SRC="$DIR/$NAME"
 DST="$HOME/$NAME"
 $DIR/../tools/sym_link.sh $SRC $DST
 
+mkdir $HOME/.git/myhooks
 NAME="commit-msg"
 SRC="$DIR/$NAME"
-DST="$HOME/.git/hooks/$NAME"
+DST="$HOME/.git/myhooks/$NAME"
 $DIR/../tools/sym_link.sh $SRC $DST
