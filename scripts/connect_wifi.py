@@ -7,7 +7,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
             description='Connect to wifi')
     parser.add_argument('command',
-                    help = 'Command to run')
+                    help = 'Command to run (list, connect)')
 
     parser.add_argument('-s', '--ssid',
                     help = 'SSID to connect to')
