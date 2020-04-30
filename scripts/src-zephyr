@@ -3,10 +3,10 @@ reporoot=`git rev-parse --show-toplevel 2>/dev/null`
 if [ "$reporoot" = "" ]; then
 	echo "$PWD not a git repo"
 else
-	if [ "$1" = "0.10" ] || [ "$1" = "0.10.0" ]; then
+	if [ "$1" = "0.10" ] || [ "$1" = "0.10.0" ] || [ "$1" = "" ]; then
 		rm -f $HOME/.zephyrrc
 		cp $HOME/.zephyrrc_SDK_0_10_0 $HOME/.zephyrrc
-	elif [ "$1" = "0.9.5" ] || [ "$1" = "" ]; then
+	elif [ "$1" = "0.9.5" ]; then
 		rm -f $HOME/.zephyrrc
 		cp $HOME/.zephyrrc_SDK_0_9_5 $HOME/.zephyrrc
 	fi
