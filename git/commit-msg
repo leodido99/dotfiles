@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Allow Merge branch commit message longer than 72
-if [[ ! `cat $1` == 'Merge branch '*  ]] && [[ ! `cat $1` == 'Merge remote-tracking branch'* ]]; then
+if [[ ! `cat $1` == 'Merge branch '*  ]] && [[ ! `cat $1` == 'Merge remote-tracking branch'* ]] && [[ ! `cat $1` == 'Revert '* ]]; then
 	# Check first line does not exceed 72 characters
 	cat "$1" | head -1 | grep -e '^..\{72\}' >/dev/null && {
 	        echo >&2 "First line exceeds 72 char limit."
