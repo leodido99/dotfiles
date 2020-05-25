@@ -36,11 +36,6 @@ if [ ! -d $HOME/.vim/autoload ]; then
 	git clone $REPO $BUNDLE/$PLUGIN
 	vim -u NONE -c "helptags $BUNDLE/$PLUGIN/doc" -c q
 
-	PLUGIN="vim-gutentags"
-	REPO="https://github.com/ludovicchabant/vim-gutentags.git"
-	git clone $REPO $BUNDLE/$PLUGIN
-	vim -u NONE -c "helptags $BUNDLE/$PLUGIN/doc" -c q
-
 	PLUGIN="vim-syntax-extra"
 	REPO="https://github.com/justinmk/vim-syntax-extra.git"
 	git clone $REPO $BUNDLE/$PLUGIN

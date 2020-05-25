@@ -103,10 +103,6 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<c-b>"
 "let g:UltiSnipsSnippetsDir="~/.vim/bundle/vim-snippets/snippets"
 
-" gutentags
-" Exclude build directories
-let g:gutentags_ctags_exclude=[ "build" ]
-
 " Configure make
 " Call script and provide current file path
 let &makeprg='compile_zephyr %:p:h'
@@ -153,7 +149,6 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
-"map <f5> :mksession! ~/.vimsession/lbise.vim<CR>
 map <f5> :Obsession ~/.vimsession/lbise.vim<CR>
 map <f6> :source ~/.vimsession/lbise.vim<CR>
 
