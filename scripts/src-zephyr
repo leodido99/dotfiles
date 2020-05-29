@@ -1,33 +1,37 @@
 #!/usr/bin/bash
 SDK_BASE="/opt/zephyr-sdk"
+DEFAULT_VER="0.10.0"
 
 reporoot=`git rev-parse --show-toplevel 2>/dev/null`
 if [ "$reporoot" = "" ]; then
 	echo "$PWD not a git repo"
 else
-	if [ "$1" = "0.12" ] || [ "$1" = "0.12.0" ]; then
-		rm -f $HOME/.zephyrrc
-		SDK_INSTALL_DIR="$SDK_BASE-0.12.0"
-	elif [ "$1" = "0.10" ] || [ "$1" = "0.10.0" ] || [ "$1" = "" ]; then
-		rm -f $HOME/.zephyrrc
-		SDK_INSTALL_DIR="$SDK_BASE-0.10.0"
-	elif [ "$1" = "0.9.5" ]; then
-		rm -f $HOME/.zephyrrc
-		SDK_INSTALL_DIR="$SDK_BASE-0.9.5"
+	if [ "$#" -eq 0 ]; then
+		SDK_VER=$DEFAULT_VER
+	else
+		SDK_VER=$1
 	fi
 
-	if [ "$SDK_INSTALL_DIR" != "" ]; then
-		echo "export ZEPHYR_TOOLCHAIN_VARIANT=zephyr" > $HOME/.zephyrrc
-		echo "export ZEPHYR_GCC_VARIANT=zephyr" >> $HOME/.zephyrrc
-		echo "export ZEPHYR_SDK_INSTALL_DIR=$SDK_INSTALL_DIR" >> $HOME/.zephyrrc
-
-		zephyrenv=$reporoot/zephyr-env.sh
-		if [ ! -f $zephyrenv ]; then
-			echo "$zephyrenv doesn't exist, not a zephyr repo"
-		else
-			. $reporoot/zephyr-env.sh
-		fi
+	SDK_INSTALL_DIR="$SDK_BASE-$SDK_VER"
+	if [ ! -d $SDK_INSTALL_DIR ]; then
+		echo "$SDK_INSTALL_DIR doesn't exist"
+		echo "Existing SDKs:"
+		ls -d ${SDK_BASE}*
+		exit -1
 	fi
 
+	rm -f $HOME/.zephyrrc
+	echo "export ZEPHYR_TOOLCHAIN_VARIANT=zephyr" > $HOME/.zephyrrc
+	echo "export ZEPHYR_GCC_VARIANT=zephyr" >> $HOME/.zephyrrc
+	echo "export ZEPHYR_SDK_INSTALL_DIR=$SDK_INSTALL_DIR" >> $HOME/.zephyrrc
+
+	zephyrenv=$reporoot/zephyr-env.sh
+	if [ ! -f $zephyrenv ]; then
+		echo "$zephyrenv doesn't exist, not a zephyr repo"
+	else
+		. $reporoot/zephyr-env.sh
+	fi
+
+	echo "$HOME/.zephyrrc:"
 	cat $HOME/.zephyrrc
 fi
