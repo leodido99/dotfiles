@@ -17,7 +17,6 @@ else
 		echo "$SDK_INSTALL_DIR doesn't exist"
 		echo "Existing SDKs:"
 		ls -d ${SDK_BASE}*
-		exit -1
 	fi
 
 	rm -f $HOME/.zephyrrc
