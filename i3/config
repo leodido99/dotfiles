@@ -109,33 +109,36 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10 Laptop"
 
-#set $monitorPrimary DP-3-1
-#set $monitorSecondary DP-3-2
-set $monitorPrimary DP-1
-set $monitorSecondary DVI-I-1
-#set $monitorLaptop eDP-1
+# Work
+set $monitorPrimary DP-3-1
+set $monitorSecondary DP-3-2
+set $monitorLaptop eDP-1
+# Home
+#set $monitorPrimary DP-1
+#set $monitorSecondary DVI-I-1
 
+# Docked Work
 workspace $ws1 output $monitorPrimary
-workspace $ws2 output $monitorPrimary
+workspace $ws2 output $monitorSecondary
 workspace $ws3 output $monitorPrimary
-workspace $ws4 output $monitorPrimary
+workspace $ws4 output $monitorSecondary
 workspace $ws5 output $monitorPrimary
 workspace $ws6 output $monitorSecondary
 workspace $ws7 output $monitorSecondary
 workspace $ws8 output $monitorSecondary
-workspace $ws9 output $monitorSecondary
-workspace $ws10 output $monitorSecondary
+workspace $ws9 output $monitorPrimary
+workspace $ws10 output $monitorLaptop
 
-#workspace $ws1 output $monitorLaptop
-#workspace $ws2 output $monitorLaptop
-#workspace $ws3 output $monitorLaptop
-#workspace $ws4 output $monitorLaptop
-#workspace $ws5 output $monitorLaptop
-#workspace $ws6 output $monitorLaptop
-#workspace $ws7 output $monitorLaptop
-#workspace $ws8 output $monitorLaptop
-#workspace $ws9 output $monitorLaptop
-
+# Home
+#workspace $ws1 output $monitorPrimary
+#workspace $ws2 output $monitorPrimary
+#workspace $ws3 output $monitorPrimary
+#workspace $ws4 output $monitorPrimary
+#workspace $ws5 output $monitorPrimary
+#workspace $ws6 output $monitorSecondary
+#workspace $ws7 output $monitorSecondary
+#workspace $ws8 output $monitorSecondary
+#workspace $ws9 output $monitorSecondary
 #workspace $ws10 output $monitorSecondary
 
 # switch to workspace
