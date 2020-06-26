@@ -5,6 +5,8 @@
 
 sn0port=2331
 sn1port=2341
+sn2port=2351
+sn3port=2361
 
 if [ -z "$1" ]
 then
@@ -23,6 +25,12 @@ else
 	elif [ "$2" == "1" ]
 	then
 		port=$sn1port
+	elif [ "$2" == "2" ]
+	then
+		port=$sn2port
+	elif [ "$2" == "3" ]
+	then
+		port=$sn3port
 	else
 		echo "Unknown device $2"
 		exit 1

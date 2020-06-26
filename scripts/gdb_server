@@ -26,6 +26,16 @@ else
 		port=2341
 		swoport=2342
 		telport=2343
+	elif [ "$1" == "2" ]
+	then
+		port=2351
+		swoport=2352
+		telport=2353
+	elif [ "$1" == "3" ]
+	then
+		port=2361
+		swoport=2362
+		telport=2363
 	else
 		echo "Unknown device $1"
 		exit 1

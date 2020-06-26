@@ -3,4 +3,6 @@
 --exclude=.git
 --exclude=build
 --exclude=zephyr
+--exclude=fw6_build_dev
+--exclude=fw6_build_release
 
