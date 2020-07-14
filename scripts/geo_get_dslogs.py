@@ -20,27 +20,31 @@ if __name__ == '__main__':
                         help = 'Output directory (Current dir if not specified)')
     parser.add_argument('--dsv', action='store_true',
                         help = 'Get dsv (GMS2) log instead of dss (GMS3)')
-    parser.add_argument('-r', '--remote-dir', default=DSS_DIR,
-                        help = 'Remote log directory (DSS (GMS3, default) or DSV (GMS2))')
+    parser.add_argument('-r', '--remote-dir',
+                        help = 'Remote log directory')
     parser.add_argument('-p', '--packets', action='store_true',
                         help = 'Gets dss-packets log (Gets dss log if not specified)')
     args = parser.parse_args()
 
-    ext = '.log'
-    if args.packets:
-        log = 'dss-packets'
+    if args.remote_dir:
+        remote_dir = args.remote_dir
+    else:
+        remote_dir = DSS_DIR
+        if args.dsv:
+            remote_dir = DSV_DIR
+
+    if args.dsv:
+        log = 'dsv6'
     else:
         log = 'dss'
+
+    ext = '.log'
+    if args.packets:
+        log += '-packets'
 
     if args.date:
         log += '-' + args.date
         ext += '.gz'
-
-    remote_dir = args.remote_dir
-    if args.remote_dir == 'DSV':
-        remote_dir = DSV_DIR
-    elif args.remote_dir == 'DSS':
-        remote_dir = DSS_DIR
 
     addr = args.server
     if args.server == 'UAT':
@@ -50,6 +54,8 @@ if __name__ == '__main__':
 
     log += ext
 
-    os.system('scp {}:{}/{} {}'.format(addr, args.remote_dir, log, args.out))
+    scp_cmd='scp {}:{}/{} {}'.format(addr, remote_dir, log, args.out)
+    print(scp_cmd)
+    os.system(scp_cmd)
     if 'gz' in ext:
         os.system('gzip -d {}/{}'.format(args.out, log))
