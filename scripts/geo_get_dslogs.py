@@ -57,13 +57,14 @@ if __name__ == '__main__':
 
     log = '{}{}'.format(base, ext)
     out = '{}/{}_{}.log'.format(args.out, args.server, base)
-    print(base)
-    print(log)
-    print(out)
 
     scp_cmd='scp {}:{}/{} {}'.format(addr, remote_dir, log, args.out)
     print(scp_cmd)
     os.system(scp_cmd)
     if 'gz' in ext:
-        os.system('gunzip -c {}/{} > {}/{}'.format(args.out, log, args.out, out))
-        os.system('rm {}/{}'.format(args.out, log))
+        gunzip_cmd = 'gunzip -c {}/{} > {}/{}'.format(args.out, log, args.out, out)
+        print(gunzip_cmd)
+        os.system(gunzip_cmd)
+        rm_cmd = 'rm {}/{}'.format(args.out, log)
+        print(rm_cmd)
+        os.system(rm_cmd)
