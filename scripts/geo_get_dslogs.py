@@ -4,6 +4,7 @@ import os
 
 SERV_US='172.16.160.115'
 SERV_UAT='172.16.160.210'
+SERV_BRSKUB='172.16.160.202'
 DEFAULT_SERV=SERV_UAT
 
 DSS_DIR='/logs/dss'
@@ -13,7 +14,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpFormatter,
 	        description='Gets a DSS log')
     parser.add_argument('-s', '--server', default=DEFAULT_SERV,
-                        help = 'Server address (Default {}) Can use US or UAT string also'.format(DEFAULT_SERV))
+                        help = 'Server address. Can be an IP address or a keyword (US/UAT/BRSKUB) (Default {})'.format(DEFAULT_SERV))
     parser.add_argument('-d', '--date',
                         help = 'Specific date in YYYY-MM-DD format (Gets current log if not specified)')
     parser.add_argument('-o', '--out', default='.',
@@ -34,16 +35,16 @@ if __name__ == '__main__':
             remote_dir = DSV_DIR
 
     if args.dsv:
-        log = 'dsv6'
+        base = 'dsv6'
     else:
-        log = 'dss'
+        base = 'dss'
 
     ext = '.log'
     if args.packets:
-        log += '-packets'
+        base += '-packets'
 
     if args.date:
-        log += '-' + args.date
+        base += '-' + args.date
         ext += '.gz'
 
     addr = args.server
@@ -51,11 +52,18 @@ if __name__ == '__main__':
         addr = SERV_UAT
     elif args.server == 'US':
         addr = SERV_US
+    elif args.server == 'BRSKUB':
+        addr = SERV_BRSKUB
 
-    log += ext
+    log = '{}{}'.format(base, ext)
+    out = '{}/{}_{}.log'.format(args.out, args.server, base)
+    print(base)
+    print(log)
+    print(out)
 
     scp_cmd='scp {}:{}/{} {}'.format(addr, remote_dir, log, args.out)
     print(scp_cmd)
     os.system(scp_cmd)
     if 'gz' in ext:
-        os.system('gzip -d {}/{}'.format(args.out, log))
+        os.system('gunzip -c {}/{} > {}/{}'.format(args.out, log, args.out, out))
+        os.system('rm {}/{}'.format(args.out, log))
