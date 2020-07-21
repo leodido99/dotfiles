@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import os
+import sys
 
 SERV_US='172.16.160.115'
 SERV_UAT='172.16.160.210'
@@ -60,11 +61,20 @@ if __name__ == '__main__':
 
     scp_cmd='scp {}:{}/{} {}'.format(addr, remote_dir, log, args.out)
     print(scp_cmd)
-    os.system(scp_cmd)
+    ret = os.system(scp_cmd)
+    if ret != 0:
+        sys.exit()
+
     if 'gz' in ext:
         gunzip_cmd = 'gunzip -c {}/{} > {}/{}'.format(args.out, log, args.out, out)
         print(gunzip_cmd)
-        os.system(gunzip_cmd)
+        ret = os.system(gunzip_cmd)
+        if ret != 0:
+            sys.exit()
+
         rm_cmd = 'rm {}/{}'.format(args.out, log)
         print(rm_cmd)
-        os.system(rm_cmd)
+        ret = os.system(rm_cmd)
+        if ret != 0:
+            sys.exit()
+
