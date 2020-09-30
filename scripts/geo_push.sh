@@ -9,7 +9,7 @@ FES_RAGESPORT="8082"
 FES_PORT=$FES_TESTPORT
 
 if [ "$#" -lt 4 ]; then
-	echo "Usage $0 <git branch> <board> <hw version> <fw> [-fes1]"
+	echo "Usage $0 <git branch> <board> <hw version> <fw type> [-fes1]"
 	exit 1
 fi
 
