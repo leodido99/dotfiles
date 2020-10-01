@@ -33,7 +33,17 @@ git co $GITBRANCH
 
 ./geosatis/fw6_release.py --board ${BOARD} --json ${RELEASEJSON} --name ${FWTYPE} --hw ${HWVERSION} --wrap ~/backup_stuff/fes/fbs_dir --wrap_name ${FWTYPE}.zip --sign fake_fbs --enc FakeARCA --no-check
 
-./geosatis/fss_dev.sh app_0 ~/backup_stuff/fes/fbs_dir/${FWTYPE}.zip.gpg ~/backup_stuff/fes/fss_dir/${FWTYPE}.zip.gpg fake_fbs FakeARCA fes@geo-satis.com
+if [[ "$FWTYPE" == "client" || "$FWTYPE" == "validation"  || "$FWTYPE" == "manuf" ]]; then
+SIGN_KEY="app_0"
+elif [ "$FWTYPE" == "secondstage_slot1" ]; then
+SIGN_KEY="boot_1"
+elif [ "$FWTYPE" == "secondstage_slot2" ]; then
+SIGN_KEY="boot_2"
+fi
+
+echo "Usering signing key $SIGN_KEY"
+
+./geosatis/fss_dev.sh $SIGN_KEY ~/backup_stuff/fes/fbs_dir/${FWTYPE}.zip.gpg ~/backup_stuff/fes/fss_dir/${FWTYPE}.zip.gpg fake_fbs FakeARCA fes@geo-satis.com
 
 cd ~/backup_stuff/fes
 curl -v --cacert ~/backup_stuff/fes/fes-tls-upload-cert.pem --cert my_fes_certificate.pem --key my_fes_key.pem https://gstfes:${FES_PORT}/ -F "data=@/home/lbise/backup_stuff/fes/fss_dir/${FWTYPE}.zip.gpg"
